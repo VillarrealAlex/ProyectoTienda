@@ -59,9 +59,9 @@
                                     <input type="file" name="imagen" id="imagen" tabindex="1" class="form-control"  value="" >
                                 </div>
                                 <div>
-                                    <div class="row">
+                                    <div class="row" style="margin-top: 15pt; margin-left:90pt">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <button><input type="submit"  tabindex="4"  value="Registrar Ahora" class="btn btn-primary"></button>
+                                            <button  type="submit"  tabindex="4"  value="Registrar Ahora" class="btn btn-primary">Registrar Ahora</button>
                                         </div>
                                     </div>
                                 </div>
