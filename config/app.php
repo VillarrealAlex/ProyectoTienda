@@ -68,7 +68,7 @@ return [
     */
 
     'timezone' => 'UTC',
-
+//no se que agregarle
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
