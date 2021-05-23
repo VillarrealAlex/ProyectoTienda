@@ -16,11 +16,18 @@ class PrimerController extends Controller
         return view('inicio');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function sesion()
+    {
+        return view('formularios.inicia_sesion');
+    }
+
+    public function registrar()
+    {
+        return view('formularios.registro');
+    }
+
+
+   
     public function create()
     {
         //

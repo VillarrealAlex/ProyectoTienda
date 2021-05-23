@@ -19,3 +19,5 @@ use App\Http\Controllers\PrimerController;
 });*/
 
 Route::get('/','PrimerController@index');
+Route::get('/inicia-sesion','PrimerController@sesion');
+Route::get('/registrar/usuario','PrimerController@registrar');
