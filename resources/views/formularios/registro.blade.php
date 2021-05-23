@@ -1,9 +1,5 @@
+@extends('layouts.main')
 @section('agregar')
-<nav class="navbar navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">
-        <img src="{{asset('images/cat.png')}}" width="40" height="30" class="d-inline-block align-top" alt="">
-      </a>
-  </nav>
 
 <div class="container">
     <div class="row">
@@ -51,10 +47,10 @@
                                     <label for="password"> Contraseña</label>
                                     <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Contraseña" required>
                                 </div>
-                                <div class="form-group">
+                                <!--div class="form-group">
                                     <label for="password2"> Confirmar Contraeñas</label>
                                     <input type="password" name="password2" id="password2" tabindex="2" class="form-control" placeholder="Confirmar Contraseña" required>
-                                </div>
+                                </div-->
                                 <!--div class="form-group">
                                     <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
                                 </div-->
@@ -65,7 +61,7 @@
                                 <div>
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <button><input type="submit"  tabindex="4"  value="Registrar Ahora"></button>
+                                            <button><input type="submit"  tabindex="4"  value="Registrar Ahora" class="btn btn-primary"></button>
                                         </div>
                                     </div>
                                 </div>

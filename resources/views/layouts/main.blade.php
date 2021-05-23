@@ -44,16 +44,17 @@
            <img src="{{asset('/images/cat.png')}}" alt="" width="37px" height="37px">
           </a>
           
-          <a style="margin-left: 400pt" class="py-2 d-none d-md-inline-block" href="{{url('/inicia-sesion')}}">Iniciar sesion</a>
+          <a style="margin-left: 300pt" class="py-2 d-none d-md-inline-block" href="{{url('/inicia-sesion')}}">Iniciar sesion</a>
           <a class="py-2 d-none d-md-inline-block" href="{{url('/registrar/usuario')}}">Registrarse</a>
         </nav>
       </header>
       
       <main>
-      @yield('iniciasesion')
+        <!-- formulario inicio de sesion-->
+        @yield('iniciasesion')
       
-          <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-    
+        <!-- formulario registrar usurio-->
+        @yield('agregar')
         </body>
 
         <footer >
@@ -64,5 +65,8 @@
               </div>
             </div>
         </footer>
+
+        <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
 </body>
 </html>
