@@ -40,8 +40,8 @@
 <body>
     <header class="site-header sticky-top py-1">
         <nav class="container d-flex flex-column flex-md-row justify-content-between">
-          <a class="py-2" href="#" aria-label="Product">
-           <img src="{{asset('/images/cat.png')}}" alt="" width="37px" height="37px">
+          <a class="py-2" href="{{url('/')}}" aria-label="Product">
+           <img src="{{asset('/images/cat.png')}}" alt="" width="37px" height="37px"> <strong>  Magnus Store</strong>
           </a>
           
           <a style="margin-left: 400pt" class="py-2 d-none d-md-inline-block" href="{{url('/inicia-sesion')}}">Iniciar sesion</a>
@@ -52,9 +52,11 @@
       <main>
         <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
           <div class="col-md-5 p-lg-5 mx-auto my-5">
-            <h1 class="display-4 fw-normal">Punny headline</h1>
-            <p class="lead fw-normal">And an even wittier subheading to boot. Jumpstart your marketing efforts with this example based on Apple’s marketing pages.</p>
-            <a class="btn btn-outline-secondary" href="#">Coming soon</a>
+            <h1 class="display-4 fw-normal">Magnus Store</h1>
+            <p class="lead fw-normal"  style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Encontrará todo tipo de articulos.
+               Desde Celulares hasta muebles para el hogar.</p>
+            <p class="lead fw-normal">Inicie sesión o cree una cuenta para empezar a adquirir sus productos</p>
+            <!--a class="btn btn-outline-secondary" href="#">Coming soon</a-->
           </div>
           <div class="product-device shadow-sm d-none d-md-block"></div>
           <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
@@ -65,8 +67,9 @@
             <div class="my-3 py-3">
               <h2 class="display-5">Another headline</h2>
               <p class="lead">And an even wittier subheading.</p>
+             
             </div>
-            <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+            <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"> <img src="" alt=""></div>
           </div>
           <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
             <div class="my-3 p-3">
