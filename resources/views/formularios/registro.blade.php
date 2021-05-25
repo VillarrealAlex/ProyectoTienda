@@ -16,20 +16,20 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <form id="register-form" action="#" method="post" enctype="multipart/form-data">
+                            <form id="register-form" action="/usuario/nuevo" method="post" enctype="multipart/form-data">
                                 @csrf
                                 
                                 <div class="form-group">
-                                    <label for="name">Nombre</label>
-                                    <input type="text" name="name" id="name" tabindex="1" class="form-control" placeholder="Nombre" value="" required>
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" name="nombre" id="nombre" tabindex="1" class="form-control" placeholder="Nombre" value="" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="appellido_pat">Apellido Paterno</label>
-                                    <input type="text" name="appellido_pat" id="appellido_pat" tabindex="1" class="form-control" placeholder="Apellido Paterno" value="" required>
+                                    <label for="apat">Apellido Paterno</label>
+                                    <input type="text" name="apat" id="apat" tabindex="1" class="form-control" placeholder="Apellido Paterno" value="" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="appellido_mat">Apellido Materno</label>
-                                    <input type="text" name="appellido_mat" id="appellido_mat" tabindex="1" class="form-control" placeholder="Apellido Materno" value="" required>
+                                    <label for="amat">Apellido Materno</label>
+                                    <input type="text" name="amat" id="amat" tabindex="1" class="form-control" placeholder="Apellido Materno" value="" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Correo Electronico</label>
