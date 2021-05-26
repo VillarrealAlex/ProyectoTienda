@@ -41,7 +41,7 @@
     <header class="site-header sticky-top py-1">
         <nav class="container d-flex flex-column flex-md-row justify-content-between">
           <a class="py-2" href="{{url('/')}}" aria-label="Product">
-           <img src="{{asset('/images/cat.png')}}" alt="" width="37px" height="37px">
+           <img src="{{asset('/images/cat.png')}}" alt="" width="37px" height="37px"><strong>Magnus Store</strong>
           </a>
           
           <a style="margin-left: 300pt" class="py-2 d-none d-md-inline-block" href="{{url('/inicia-sesion')}}">Iniciar sesion</a>

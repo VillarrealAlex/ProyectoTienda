@@ -38,16 +38,31 @@
     <link href="https://getbootstrap.com/docs/5.0/examples/product/product.css" rel="stylesheet">
 </head>
 <body>
-    <header class="site-header sticky-top py-1">
-        <nav class="container d-flex flex-column flex-md-row justify-content-between">
-          <a class="py-2" href="{{url('/')}}" aria-label="Product">
-           <img src="{{asset('/images/cat.png')}}" alt="" width="37px" height="37px"> <strong>  Magnus Store</strong>
+   
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{{url('/')}}">Magnus Store
+            <img src="{{asset('/images/cat.png')}}" alt="" width="37px" height="37px">
           </a>
-          
-          <a style="margin-left: 400pt" class="py-2 d-none d-md-inline-block" href="{{url('/inicia-sesion')}}">Iniciar sesion</a>
-          <a class="py-2 d-none d-md-inline-block" href="{{url('/registrar/usuario')}}">Registrarse</a>
-        </nav>
-      </header>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <a class="nav-link" href="{{url('/inicia-sesion')}}">Iniciar Sesion</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url('/registrar/usuario')}}" tabindex="-1">Registrarse</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+          </div>
+        </div>
+      </nav>
       
       <main>
         <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
