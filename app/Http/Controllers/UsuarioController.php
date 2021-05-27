@@ -14,6 +14,13 @@ class UsuarioController extends Controller
     public function index()
     {
         //
+        return view ('usuarios.clientes');
+    }
+
+    public function index2()
+    {
+        //
+        return view ('usuarios.admin');
     }
 
    
