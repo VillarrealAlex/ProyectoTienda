@@ -3,38 +3,39 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Usuario;
+
 
 class UsersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+  
     public function store(Request $request)
     {
         //
+         //nuevo 
+        //$users =request()->all();
+        $users =request()->except('_token');
+       // $users =request()->except('_token','password2');
+        $users['password'] = Hash::make($users['password']);
+        
+        if($request->hasFile('imagen')){
+
+            $users['imagen']=$request->file('imagen')->store('uploads','public');
+
+        }
+        Usuario::insert($users);
+        return redirect('/');
     }
 
     /**

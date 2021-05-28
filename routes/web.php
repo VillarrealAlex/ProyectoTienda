@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PrimerController;
+use App\Http\Controllers\CategoriasController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ProductosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,9 +20,9 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 });*/
 
-Route::get('/','PrimerController@index');
-Route::get('/inicia-sesion','PrimerController@sesion');
-Route::get('/registrar/usuario','PrimerController@registrar');
+Route::get('/',[PrimerController::class,'index']);
+Route::get('/inicia-sesion',[PrimerController::class,'sesion']);
+Route::get('/registrar/usuario',[PrimerController::class,'registrar']);
 
 Route::get('/magnus-store/acceso', 'UsuarioController@index');
 Route::get('/magnus-store/acceso/admin', 'UsuarioController@index2');
