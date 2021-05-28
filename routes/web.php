@@ -14,9 +14,9 @@ use App\Http\Controllers\PrimerController;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
+Route::get('/editar', function () {
+    return view('Productos/edit');
+});
 
 Route::get('/','PrimerController@index');
 Route::get('/inicia-sesion','PrimerController@sesion');

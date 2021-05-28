@@ -7,6 +7,8 @@
     <title>Editar</title>
 </head>
 <body>
+
+<p> Editar </p>
     
 </body>
 </html>
