@@ -14,7 +14,7 @@ use App\Http\Controllers\PrimerController;
 |
 */
 
-Route::get('/editar', function () {
+Route::get('/edit', function () {
     return view('Productos/edit');
 });
 
