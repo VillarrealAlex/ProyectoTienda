@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PrimerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +13,6 @@ use App\Http\Controllers\PrimerController;
 |
 */
 
-Route::get('/edit', function () {
-    return view('Productos/edit');
+Route::get('/', function () {
+    return view('welcome');
 });
-
-Route::get('/','PrimerController@index');
-Route::get('/inicia-sesion','PrimerController@sesion');
-Route::get('/registrar/usuario','PrimerController@registrar');
-
-Route::get('/magnus-store/acceso', 'UsuarioController@index');
-Route::get('/magnus-store/acceso/admin', 'UsuarioController@index2');
-Route::post('/usuario/nuevo', 'UsuarioController@store');
