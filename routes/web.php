@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
+
+Route::get('/','PrimerController@index');
+Route::get('/inicia-sesion','PrimerController@sesion');
+Route::get('/registrar/usuario','PrimerController@registrar');
+
+Route::get('/magnus-store/acceso', 'UsuarioController@index');
+Route::get('/magnus-store/acceso/admin', 'UsuarioController@index2');
+Route::post('/usuario/nuevo', 'UsuarioController@store');
+
