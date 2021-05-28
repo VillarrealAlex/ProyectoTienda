@@ -25,4 +25,3 @@ Route::get('/registrar/usuario','PrimerController@registrar');
 Route::get('/magnus-store/acceso', 'UsuarioController@index');
 Route::get('/magnus-store/acceso/admin', 'UsuarioController@index2');
 Route::post('/usuario/nuevo', 'UsuarioController@store');
-
