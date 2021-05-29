@@ -15,13 +15,15 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
+                        
                         <div class="col-lg-12">
-                            <form id="register-form" action="/usuario/nuevo" method="post" enctype="multipart/form-data">
+                           
+                            <form id="register-form" action="{{url('/usuario/nuevo')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 
                                 <div class="form-group">
-                                    <label for="nombre">Nombre</label>
-                                    <input type="text" name="nombre" id="nombre" tabindex="1" class="form-control" placeholder="Nombre" value="" required>
+                                    <label for="name">Nombre</label>
+                                    <input type="text" name="name" id="name" tabindex="1" class="form-control" placeholder="Nombre" value="" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="apat">Apellido Paterno</label>

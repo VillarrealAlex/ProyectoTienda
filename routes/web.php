@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PrimerController;
 use App\Http\Controllers\CategoriasController;
@@ -24,7 +25,11 @@ Route::get('/',[PrimerController::class,'index']);
 Route::get('/inicia-sesion',[PrimerController::class,'sesion']);
 Route::get('/registrar/usuario',[PrimerController::class,'registrar']);
 
-Route::get('/magnus-store/acceso', 'UsuarioController@index');
-Route::get('/magnus-store/acceso/admin', 'UsuarioController@index2');
-Route::post('/usuario/nuevo', 'UsuarioController@store');
+Route::post('/usuario/nuevo', [UsersController::class,'store']);
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 

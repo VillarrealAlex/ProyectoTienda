@@ -15,12 +15,12 @@ class PrimerController extends Controller
 
     public function sesion()
     {
-        return view('formularios.inicia_sesion');
+        return view('auth.login');
     }
 
     public function registrar()
     {
-        return view('formularios.registro');
+        return view('auth.register');
     }
 
    

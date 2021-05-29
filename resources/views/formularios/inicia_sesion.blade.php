@@ -53,7 +53,7 @@
    <div class="content-center">
             
     <main class="form-signin">
-        <form action="#" method="POST">
+        <form action="{{route('login')}}" method="POST">
             @csrf
         <img style="margin-left: 80pt" class="mb-4" src="{{asset('/images/cat.png')}}" alt="" width="72px" height="70px">
         <h1 style="margin-left: 60px" class="h3 mb-3 fw-normal">Inicie sesión</h1>

@@ -51,10 +51,14 @@
       
       <main>
         <!-- formulario inicio de sesion-->
-        @yield('iniciasesion')
+        @yield('content')
       
         <!-- formulario registrar usurio-->
         @yield('agregar')
+
+        <!-- formulario reset pasword-->
+
+        
         </body>
 
         <footer >

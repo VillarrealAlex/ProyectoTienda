@@ -4,16 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         //
+       
     }
 
     
+
     public function create()
     {
         //
@@ -34,7 +44,7 @@ class UsersController extends Controller
             $users['imagen']=$request->file('imagen')->store('uploads','public');
 
         }
-        Usuario::insert($users);
+        User::insert($users);
         return redirect('/');
     }
 
