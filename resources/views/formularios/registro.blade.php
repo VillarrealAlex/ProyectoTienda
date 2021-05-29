@@ -18,7 +18,7 @@
                         
                         <div class="col-lg-12">
                            
-                            <form id="register-form" action="{{url('/usuario/nuevo')}}" method="post" enctype="multipart/form-data">
+                            <form id="register-form" action="{{route('nuevo')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 
                                 <div class="form-group">

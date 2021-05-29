@@ -26,13 +26,13 @@ Route::get('/',[PrimerController::class,'index']);
 Route::get('/inicia-sesion',[PrimerController::class,'sesion']);
 Route::get('/registrar/usuario',[PrimerController::class,'registrar']);
 
-Route::post('/usuario/nuevo', [UsersController::class,'store']);
+Route::post('/usuario/nuevo', [UsersController::class,'store'])->name('nuevo');
 
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/logout',[LoginController::class,'logout']);
+Route::get('/logout',[LoginController::class,'logout'])->middleware('auth');
 
 //Route::get('/admin',[UsersController::class,'admin'])->middleware('auth');
 
