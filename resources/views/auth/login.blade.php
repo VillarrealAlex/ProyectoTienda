@@ -59,12 +59,25 @@
                 
                     <div >
                         <label for="email">Correo Electronico</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
-                    </div>
+                        <input type="email" class="form-control  @error('email') is-invalid @enderror" id="email" name="email" placeholder="name@example.com" required>
+
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+
+                    @enderror
+                      </div>
                     <div >
                         <label for="password">Contraseña</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required>
-                    </div>
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Contraseña" required>
+                    
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                      </div>
                 
                     <!--div class="checkbox mb-3">
                         <label>

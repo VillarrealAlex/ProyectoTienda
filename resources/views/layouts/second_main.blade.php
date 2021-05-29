@@ -43,12 +43,27 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    @yield('clientes')
-                    <!-- Page Heading -->
                     
+                    <!-- Page Heading -->
+
+                    <!-- Clientes-->
+                    @yield('clientes')
+                    
+                    <!-- Administrador-->
                     @yield('admin')
-                   
-                    @yield('content')
+                
+
+                    <!-- Supervisor-->
+                    @yield('supervisor')
+
+                    <!-- Contador-->
+                    @yield('contador')
+
+                    <!-- Encargador-->
+                    @yield('encargado')
+
+
+     
                 </div>
                 <!-- /.container-fluid -->
 
@@ -59,7 +74,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; Your Magnus Store 2021</span>
                     </div>
                 </div>
             </footer>
@@ -90,7 +105,7 @@
                 <div class="modal-body">Clic en "Aceptar" para cerrar sesion.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="/">Aceptar</a>
+                    <a class="btn btn-primary" href="{{url('/logout')}}">Aceptar</a>
                 </div>
             </div>
         </div>

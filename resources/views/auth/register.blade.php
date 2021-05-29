@@ -9,24 +9,24 @@
                 <div  class="card-header"><h5 style="margin-left: 95pt">{{ __('Registrese') }}</h5></div>
                 
                 <div class="card-body">
-                    <form id="register-form" action="{{url('/usuario/nuevo')}}" method="post" enctype="multipart/form-data">
-                        @csrf
+                    <form id="register-form" action="/usuario/nuevo" method="post" enctype="multipart/form-data">
+                        {{ csrf_field() }}
                         
                         <div class="form-group">
                             <label for="name">Nombre</label>
-                            <input type="text" name="name" id="name" tabindex="1" class="form-control" placeholder="Nombre" value="" required>
+                            <input type="text" name="name" id="name" tabindex="1" class="form-control" placeholder="Nombre" value="{{ old('name') }}" required>
                         </div>
                         <div class="form-group">
                             <label for="apat">Apellido Paterno</label>
-                            <input type="text" name="apat" id="apat" tabindex="1" class="form-control" placeholder="Apellido Paterno" value="" required>
+                            <input type="text" name="apat" id="apat" tabindex="1" class="form-control" placeholder="Apellido Paterno" value="{{ old('apat') }}" required>
                         </div>
                         <div class="form-group">
                             <label for="amat">Apellido Materno</label>
-                            <input type="text" name="amat" id="amat" tabindex="1" class="form-control" placeholder="Apellido Materno" value="" required>
+                            <input type="text" name="amat" id="amat" tabindex="1" class="form-control" placeholder="Apellido Materno" value="{{ old('amat') }}" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Correo Electronico</label>
-                            <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Correo Electronico" value="" required>
+                            <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Correo Electronico" value="{{ old('email') }}" required>
                         </div>
                         <!--div class="form-group">
                             <select name="rol" class="form-select" aria-label="Default select example" tabindex="1">

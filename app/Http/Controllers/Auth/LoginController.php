@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -40,9 +41,9 @@ class LoginController extends Controller
 
     public function index()
     {
-        
-        if (auth()->user()->rol =='Cliente') {
-            return '/cliente';
+        $user = Auth::user();
+        if ($user->rol =='Cliente') {
+            return  '/cliente';
         }
         if (auth()->user()->rol == 'Supervisor') {
             return '/supervisor';
@@ -53,37 +54,18 @@ class LoginController extends Controller
         if (auth()->user()->rol == 'Encargado') {
             return '/encargado';
         }
-        if (auth()->user()->rol == 'Administrador') {
-            return '/administrador';
+        if ($user->rol == 'Administrador') {
+            return view('usuarios.admin.admin');
         }
 
         return '/inicia_sesion';
     }
 
-    /*public function index()
-    {
-        $credentials = $this->validate(request(),[
 
-            'email' => 'required', 'string', 'email', 'max:255', 'unique:users',
-            'password' => 'required|string|min:5'
-
-        ]);
-
-        if(auth()->user($credentials))
-        {
-            if(auth()->user()->rol=="Cliente")
-            {
-            return view('usuarios.client.clientes');
-            }
-
-            if(auth()->user()->rol=="Supervisor")
-            {
-            return view('usuarios.supervisor.supervisor');
-            }
-
-        }
-
-            return back()->withErrors(['usuario' => 'El Usuario o Contraseña son Incorrectos'])->withInput(request(['usuario']));
-    }*/
+    public function logout(){
+        Auth::logout();
+        return redirect('/');
+ 
+    }
 
 }

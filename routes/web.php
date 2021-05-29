@@ -6,6 +6,7 @@ use App\Http\Controllers\PrimerController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProductosController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,5 +32,7 @@ Route::post('/usuario/nuevo', [UsersController::class,'store']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/logout',[LoginController::class,'logout']);
 
+//Route::get('/admin',[UsersController::class,'admin'])->middleware('auth');
 
