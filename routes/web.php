@@ -36,3 +36,4 @@ Route::get('/logout',[LoginController::class,'logout'])->middleware('auth');
 
 //Route::get('/admin',[UsersController::class,'admin'])->middleware('auth');
 
+Route::resource('categoria','App\Http\Controllers\CategoriaController');
