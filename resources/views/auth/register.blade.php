@@ -9,7 +9,7 @@
                 <div  class="card-header"><h5 style="margin-left: 95pt">{{ __('Registrese') }}</h5></div>
                 
                 <div class="card-body">
-                    <form id="register-form" action="/usuario/nuevo" method="post" enctype="multipart/form-data">
+                    <form id="register-form" action="{{route('nuevo')}}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         
                         <div class="form-group">

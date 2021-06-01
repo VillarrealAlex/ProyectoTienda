@@ -11,10 +11,6 @@ use Illuminate\Support\Arr;
 
 class UsersController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     
     public function index()
     {
@@ -33,7 +29,6 @@ class UsersController extends Controller
     public function store(Request $request)
     {
        
-
         //$users =request()->all();
         $users = request()->except('_token');
        // $users =request()->except('_token','password2');
@@ -45,7 +40,7 @@ class UsersController extends Controller
 
            
         }  
-        Usuario::insert($users);
+        User::insert($users);
 
         return redirect('/');
        

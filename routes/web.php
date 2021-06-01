@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Auth;
 });*/
 
 Route::get('/',[PrimerController::class,'index']);
-Route::get('/inicia-sesion',[PrimerController::class,'sesion']);
+Route::get('/inicia-sesion',[PrimerController::class,'sesion'])->name('login');
 Route::get('/registrar/usuario',[PrimerController::class,'registrar']);
 
 Route::post('/usuario/nuevo', [UsersController::class,'store'])->name('nuevo');

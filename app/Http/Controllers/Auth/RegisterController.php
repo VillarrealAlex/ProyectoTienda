@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -62,15 +63,25 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    protected function create(array $data, Request $request)
     {
         
-        return User::create([
+        /*return User::create([
            
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             
-        ]);
+        ]);*/
+
+         //$users =request()->all();
+         $users = request()->except('_token');
+         // $users =request()->except('_token','password2');
+          $users['password'] = Hash::make($users['password']);
+          
+          
+          User::insert($users);
+  
+          return redirect('/');
     }
 }
