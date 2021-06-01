@@ -41,7 +41,7 @@
    
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{{url('/')}}">Yareni's Store
+          <a class="navbar-brand" href="{{url('/')}}">Magnus Store
             <img src="{{asset('/images/cat.png')}}" alt="" width="37px" height="37px">
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

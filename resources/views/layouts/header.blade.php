@@ -171,8 +171,10 @@
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-family: 'Times New Roman', Times, serif">( {{Auth::user()->rol}} )</span>
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->name}}</span>
-                <img class="img-profile rounded-circle"
-                    src="{{Auth::user()->imagen}}">
+                
+                    <img class="rounded-circle" alt="Avatar" height="55pt" width="45pt"
+                    src="{{ asset('storage/'.Auth::user()->imagen) }}">
+            
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Arr;
 
+
 class UsersController extends Controller
 {
     
@@ -37,6 +38,7 @@ class UsersController extends Controller
         if($request->hasFile('imagen')){
 
             $users['imagen'] = $request->file('imagen')->store('uploads','public');
+            
 
            
         }  

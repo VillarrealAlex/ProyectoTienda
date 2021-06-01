@@ -26,7 +26,14 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Correo Electronico</label>
-                            <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Correo Electronico" value="{{ old('email') }}" required>
+                            <input type="email" name="email" id="email" tabindex="1" class="form-control @error('email') is-invalid @enderror" placeholder="Correo Electronico" value="{{ old('email') }}" required>
+                            
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        
                         </div>
                         <!--div class="form-group">
                             <select name="rol" class="form-select" aria-label="Default select example" tabindex="1">
@@ -38,7 +45,13 @@
                         </div-->
                         <div class="form-group">
                             <label for="password"> Contraseña</label>
-                            <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Contraseña" required>
+                            <input type="password" name="password" id="password" tabindex="2" class="form-control @error('password') is-invalid @enderror" placeholder="Contraseña" required>
+                       
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                             @enderror
                         </div>
                         <!--div class="form-group">
                             <label for="password2"> Confirmar Contraeñas</label>
