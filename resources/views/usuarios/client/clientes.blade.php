@@ -2,4 +2,5 @@
 
 @section('clientes')
     <h2>estamos en cliente</h2>
+   
 @endsection
