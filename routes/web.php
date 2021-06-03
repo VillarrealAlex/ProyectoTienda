@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Auth;
 });*/
 
 //****************************************    PRIMERAS RUTAS    ********************************** */
-Route::get('/',[PrimerController::class,'index']);
+Route::get('/',[PrimerController::class,'index'])->middleware('guest');
 Route::get('/inicia-sesion',[PrimerController::class,'sesion'])->name('login');
 Route::get('/registrar/usuario',[PrimerController::class,'registrar']);
 
@@ -36,10 +36,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/logout',[LoginController::class,'logout'])->middleware('auth');
 
 //******************************** RUTAS CLIENTES  *************************************************** */
-Route::get('users/perfil',[ClientesController::class,'perfil'])->name('perfil');
-Route::post('users/perfil',[ClientesController::class,'edit'])->name('editar');
-
-
+Route::get('users/perfil',[ClientesController::class,'edit'])->name('perfil');
+Route::put('perfil/{id}',[ClientesController::class,'update']);
+Route::get('configuracion',[ClientesController::class,'Password'])->name('config');
+Route::post('configuracion/{id}',[ClientesController::class,'updatePassword'])->name('nuevoPass');
+Route::delete('eliminar-cuenta/{id}',[ClientesController::class,'eliminarCuenta'])->name('eliminar');
 
 
 

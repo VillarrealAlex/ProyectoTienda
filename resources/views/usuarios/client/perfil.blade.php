@@ -17,48 +17,36 @@
                 @include('layouts.header')
 
                 <div class="container-fluid">
-                    <form method="POST" action="{{route('editar')}}">
+                    <form method="POST" enctype="multipart/form-data" action="/perfil/{{Auth::user()->id}}">
                         {{ csrf_field() }}
+                        @method('put')
                         <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="name">Nombre</label>
-                            <input type="text" class="form-control" id="name" placeholder="Nombre (s)" value="{{Auth::user()->name}}">
+                            <input type="text" class="form-control" id="name" placeholder="Nombre (s)" name="name" value="{{Auth::user()->name}}">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="email">Correo Electronico</label>
-                            <input type="email" class="form-control" id="email" placeholder="name@example.com" value="{{Auth::user()->email}}" >
+                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value="{{Auth::user()->email}}" >
                         </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="apat">Apellido Paterno</label>
-                                <input type="text" class="form-control" id="apat"  value="{{Auth::user()->apat}}">
+                                <input type="text" class="form-control" id="apat"  name="apat" value="{{Auth::user()->apat}}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="amat">Apellido Materno</label>
-                                <input type="tex" class="form-control" id="amat" value="{{Auth::user()->amat}}" >
+                                <input type="tex" class="form-control" id="amat" name="amat" value="{{Auth::user()->amat}}" >
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="password">Contraseña Actual</label>
-                                <input type="password" class="form-control" id="password" placeholder="Contraseña">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="password">Nueva Contraseña</label>
-                                <input type="password" class="form-control" id="password" placeholder="Nueva Contraseña">
-                            </div>
-                        </div>
-
-                            <div class="form-group col-md-6">
-                                <label for="mypassword">Confirmar Contraseña</label> 
-                                <input type="password" id="mypassword" class="form-control" name="password_confirmation" placeholder="Confirmar Contraseña">
-                            </div>
-                        
-                        <div class="form-group col-md-4">
-                            <label for="imagen">Imagen</label> 
-                            <input type="file" id="imagen" name="imagen">
-                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Imagen:</label>
+                            <br>
+                             <img src="{{asset('storage').'/'.Auth::user()->imagen}}" width="200">
+                            <br>
+                            <input id="imagen" name="imagen" type="file" class="form-control" value="">    
+                          </div>
                     
                         <button type="submit" class="btn btn-primary">Confirmar</button>
                     </form>
