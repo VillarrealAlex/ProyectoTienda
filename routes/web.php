@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\SupervisorController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,13 @@ Route::post('configuracion/{id}',[ClientesController::class,'updatePassword'])->
 Route::delete('eliminar-cuenta/{id}',[ClientesController::class,'eliminarCuenta'])->name('eliminar');
 
 
+//********************************************* RUTAS SUPERVISOR********************************* */
+Route::get('usuarios',[SupervisorController::class,'index'])->middleware('auth')->name('users');
+Route::get('editar/usuario/{id}',[SupervisorController::class,'edit'])->middleware('auth');
+Route::get('detalles/usuario/{id}',[SupervisorController::class,'show'])->middleware('auth');
+Route::put('actualizar/{id}',[SupervisorController::class,'update'])->middleware('auth');
+Route::delete('eliminar/usuario/{id}',[SupervisorController::class,'destroy'])->middleware('auth');
+Route::put('cambiar/password/{id}',[SupervisorController::class,'updatePassword'])->middleware('auth');
 
 
 Route::resource('categoria','App\Http\Controllers\CategoriaController');

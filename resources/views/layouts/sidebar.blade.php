@@ -21,7 +21,7 @@
                 Menú 
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('users')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Usuarios</span></a>
             </li>
