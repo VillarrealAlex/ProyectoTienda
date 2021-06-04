@@ -7,11 +7,6 @@
 <link href="{{ asset('/admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <body id="page-top">
-@if (Session::has('message'))
-    <div class="text-danger">
-    {{Session::get('message')}}
-    </div>
-@endif
     <div id="wrapper">
           @include('layouts.sidebar')
 
@@ -21,33 +16,39 @@
                 @include('layouts.header')
 
                 <div class="container-fluid">
-                    <form method="POST" enctype="multipart/form-data" action="/actualizar/{{$user->id}}">
+                    <form method="POST" enctype="multipart/form-data" action="/nuevo/usuario">
                         {{ csrf_field() }}
-                        @method('PUT')
+                        
                         <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="name">Nombre</label>
-                            <input type="text" class="form-control" id="name" placeholder="Nombre (s)" name="name" value="{{$user->name}}">
+                            <input type="text" class="form-control" id="name" placeholder="Nombre (s)" name="name" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="email">Correo Electronico</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value="{{$user->email}}" >
+                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required >
                         </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="apat">Apellido Paterno</label>
-                                <input type="text" class="form-control" id="apat"  name="apat" value="{{$user->apat}}">
+                                <input type="text" class="form-control" id="apat"  name="apat" placeholder="Apellido Paterno" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="amat">Apellido Materno</label>
-                                <input type="text" class="form-control" id="amat" name="amat" value="{{$user->amat}}" >
+                                <input type="tex" class="form-control" id="amat" name="amat" placeholder="Apellido Materno" required>
                             </div>
                         </div>
+                       
+                        <div class="form-group col-md-6">
+                            <label for="password">Contraseña</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required>
+                        </div>
+
                         <div class="form-group col-md-6">
                             <label for="exampleFormControlSelect1">Rol</label>
                             <select name="rol" class="form-control" id="exampleFormControlSelect1">
-                              <option>{{$user->rol}}</option>
+                              <option hidden>--</option>
                               <option>Cliente</option>
                               <option>Administrador</option>
                               <option>Encargado</option>
@@ -58,42 +59,13 @@
                         <div class="mb-3">
                             <label for="" class="form-label">Imagen:</label>
                             <br>
-                             <img src="{{asset('storage'.'/'.$user->imagen)}}" width="200">
+                            
                             <br>
-                            <input id="imagen" name="imagen" type="file" class="form-control" value="{{$user->imagen}}">    
+                            <input id="imagen" name="imagen" type="file" class="form-control" >    
                           </div>
                     
                         <button type="submit" class="btn btn-primary">Confirmar</button>
                     </form>
-
-                    <h4 style="margin-left: 200pt"><strong> Cambiar Contraseña</strong></h4>
-                    <form style="margin-left: 100pt" method="POST"  action="/cambiar/password/{{$user->id}}">
-                        {{ csrf_field() }}
-                        @method('PUT')
-                        
-                        <div class="form-row">
-                       {{--}} <div class="form-group col-md-6">
-                            <label for="mypassword"><h5> Contraseña Actual </h5></label>
-                            <input type="password" class="form-control"  placeholder="Contraseña Actual" name="mypassword" required value="">
-                            <div class="text-danger">{{$errors->first('mypassword')}}</div>
-                          </div>--}}
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="password"><h5> Nueva Contraseña</h5></label>
-                                <input type="password" class="form-control" name="password" placeholder="Contraseña Nueva" required value="">
-                                <div class="text-danger">{{$errors->first('password')}}</div>
-                              </div>
-                        </div>
-                        <div class="form-row">
-                          <div class="form-group col-md-6">
-                              <label for="password"><h5> Confirmar Contraseña Nueva </h5></label>
-                              <input type="password" class="form-control" name="password_confirmation" placeholder="Contraseña Nueva" required value="">
-                          </div>
-                      </div>    
-                          </div>
-                        <button style="margin-left: 200pt" type="submit" class="btn btn-primary">Confirmar</button>
-                  </form>
                 </div>
             </div>
          </div>

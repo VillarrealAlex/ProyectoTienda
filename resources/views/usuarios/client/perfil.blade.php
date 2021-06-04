@@ -37,7 +37,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="amat">Apellido Materno</label>
-                                <input type="tex" class="form-control" id="amat" name="amat" value="{{Auth::user()->amat}}" >
+                                <input type="text" class="form-control" id="amat" name="amat" value="{{Auth::user()->amat}}" >
                             </div>
                         </div>
                         <div class="mb-3">

@@ -51,6 +51,8 @@ Route::get('detalles/usuario/{id}',[SupervisorController::class,'show'])->middle
 Route::put('actualizar/{id}',[SupervisorController::class,'update'])->middleware('auth');
 Route::delete('eliminar/usuario/{id}',[SupervisorController::class,'destroy'])->middleware('auth');
 Route::put('cambiar/password/{id}',[SupervisorController::class,'updatePassword'])->middleware('auth');
+Route::get('crear-nuevo-usuario',[SupervisorController::class,'create'])->middleware('auth')->name('nuevoUsuario');
+Route::post('nuevo/usuario',[SupervisorController::class,'store'])->middleware('auth');
 
 
 Route::resource('categoria','App\Http\Controllers\CategoriaController');

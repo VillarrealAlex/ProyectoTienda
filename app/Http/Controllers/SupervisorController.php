@@ -27,13 +27,29 @@ class SupervisorController extends Controller
    
     public function create()
     {
-        //
+        return view('usuarios.supervisor.crear');
     }
 
    
     public function store(Request $request)
     {
         //
+
+         //$users =request()->all();
+         $users = request()->except('_token');
+         // $users =request()->except('_token','password2');
+          $users['password'] = Hash::make($users['password']);
+          
+          if($request->hasFile('imagen')){
+  
+              $users['imagen'] = $request->file('imagen')->store('uploads','public');
+              
+  
+             
+          }  
+          User::insert($users);
+  
+          return redirect('/usuarios');
     }
 
     public function show($id)

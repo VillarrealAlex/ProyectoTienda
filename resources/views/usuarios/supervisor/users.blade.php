@@ -25,7 +25,7 @@
                                 </div>
                                 
                                 <div class="col-sm-6">
-                                    <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Usuario</span></a>					
+                                    <a href="{{route('nuevoUsuario')}}" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Usuario</span></a>					
                                     @if (Session::has('message'))
                                         <div class="text-danger">
                                         <h6>{{Session::get('message')}}</h6>
