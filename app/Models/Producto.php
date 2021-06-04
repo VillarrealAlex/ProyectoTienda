@@ -8,5 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Producto extends Model
 {
     use HasFactory;
-    protected $table = 'producto';
+    protected $table = 'productos';
+
+    //relacion uno a muchos con users
+
+    public function user(){
+
+        return $this->belongsTo('App\Models\User');
+    }
+
+    //relacion con users
+    public function categoria(){
+
+        return $this->belongsTo('App\Models\Categoria');
+    }
 }

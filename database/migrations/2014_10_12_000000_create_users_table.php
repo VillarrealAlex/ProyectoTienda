@@ -21,8 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('apat');
             $table->string('amat');
-            $table->text('imagen',100);
-            $table->text('rol');
+            $table->text('imagen',100)->nullable();
+            $table->enum('rol',['Cliente','Supervisor','Contador','Encargado','Administrador']);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -15,9 +15,11 @@ class Categoria extends Migration
     {
         Schema::create('categoria', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo',10);
-            $table->string('descripcion',50);
-            $table->integer('cantidad');
+            $table->string('nombre');
+            //$table->string('codigo');
+            $table->string('descripcion');
+            $table->string('imagen');
+            $table->tinyInteger('activo');
             $table->timestamps();
 
         });
@@ -31,5 +33,6 @@ class Categoria extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('categorias');
     }
 }
