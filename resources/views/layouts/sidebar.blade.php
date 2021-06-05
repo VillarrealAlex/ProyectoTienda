@@ -26,7 +26,7 @@
                     <span>Usuarios</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('categorias')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Categorias</span></a>
             </li>

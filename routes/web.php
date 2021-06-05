@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CategoriaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PrimerController;
 use App\Http\Controllers\CategoriasController;
@@ -54,5 +55,9 @@ Route::put('cambiar/password/{id}',[SupervisorController::class,'updatePassword'
 Route::get('crear-nuevo-usuario',[SupervisorController::class,'create'])->middleware('auth')->name('nuevoUsuario');
 Route::post('nuevo/usuario',[SupervisorController::class,'store'])->middleware('auth');
 
+Route::get('categorias',[CategoriaController::class,'listarCategorias'])->name('categorias')->middleware('auth');
+Route::post('nueva/categoria',[CategoriaController::class,'store'])->middleware('auth')->name('nueva.categoria');
+Route::put('editar/categoria/{id}',[CategoriaController::class,'update'])->middleware('auth');
+Route::delete('eliminar/categoria/{id}',[CategoriaController::class,'destroy'])->middleware('auth');
 
 Route::resource('categoria','App\Http\Controllers\CategoriaController');
