@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Categoria;
 
 class PrimerController extends Controller
 {
@@ -10,7 +12,12 @@ class PrimerController extends Controller
     public function index()
     {
         //
-        return view('inicio');
+        $categorias = DB::table('categoria')
+                            ->paginate();
+
+        return view('inicio', compact('categorias'));
+
+       // return view('inicio');
     }
 
     public function sesion()

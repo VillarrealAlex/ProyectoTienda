@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Categoria;
+use Illuminate\Support\Facades\DB;
 
 class CategoriaController extends Controller
 {
@@ -16,11 +18,14 @@ class CategoriaController extends Controller
         return view('Categoria.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   public function mostrarCategorias(){
+
+        $categorias = DB::table('categoria')
+                            ->get();
+
+        return view('inicio', compact('categorias'));
+
+   }
     public function create()
     {
         //
