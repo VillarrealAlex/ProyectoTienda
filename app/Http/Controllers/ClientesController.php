@@ -12,11 +12,18 @@ use Illuminate\Support\Facades\Hash;
 
 class ClientesController extends Controller
 {
+
+    public function veProductos(){
+
+        return view('productos');
+    }
+
     public function __construct()
     {
         $this->middleware('auth');
     }
    
+
     public function index()
     {
         

@@ -11,12 +11,14 @@ use Illuminate\Support\Facades\Storage;
 
 class CategoriaController extends Controller
 {
-    public function __construct()
-    {
+    public function __construct(){
+        
         $this->middleware('auth');
     }
-    public function index()
-    {
+    
+    public function index(){
+
+
         return view('Categoria.index');
     }
 
@@ -102,12 +104,6 @@ class CategoriaController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

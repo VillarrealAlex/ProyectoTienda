@@ -44,6 +44,7 @@ Route::get('configuracion',[ClientesController::class,'Password'])->name('config
 Route::post('configuracion/{id}',[ClientesController::class,'updatePassword'])->name('nuevoPass');
 Route::delete('eliminar-cuenta/{id}',[ClientesController::class,'eliminarCuenta'])->name('eliminar');
 
+Route::get('productos/{nombre}',[PrimerController::class,'veProductos']);
 
 //********************************************* RUTAS SUPERVISOR********************************* */
 Route::get('usuarios',[SupervisorController::class,'index'])->middleware('auth')->name('users');

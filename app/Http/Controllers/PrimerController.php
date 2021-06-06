@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Categoria;
+use App\Models\Producto;
 
 class PrimerController extends Controller
 {
@@ -30,6 +31,16 @@ class PrimerController extends Controller
         return view('auth.register');
     }
 
+    public function veProductos(){
+
+        $productos = DB::table('productos')
+                    ->join('categoria','productos.categoria_id','=','categoria.id')
+                    ->select('productos.nombre','productos.precio','productos.descripcion','productos.imagen')
+                    ->groupBy('productos.nombre','productos.precio','productos.descripcion','productos.imagen')
+                    ->paginate(6);
+
+        return view('productos',compact('productos'));
+    }
    
     public function create()
     {

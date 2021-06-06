@@ -44,16 +44,14 @@
           <a class="navbar-brand" href="{{url('/')}}">Magnus Store
             <img src="{{asset('/images/cat.png')}}" alt="" width="37px" height="37px">
           </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+        
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
               <li class="nav-item">
                 <a class="nav-link" href="{{url('/inicia-sesion')}}">Iniciar Sesion</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{url('/registrar/usuario')}}" tabindex="-1">Registrarse</a>
+                <a class="nav-link" href="{{url('/registrar/usuario')}}" >Registrarse</a>
               </li>
             </ul>
             <form class="d-flex">
@@ -90,9 +88,11 @@
             <div class=" shadow-sm mx-auto" style="width: 100%; height: 100%; border-radius: 21px 21px 0 0;"> 
               <img width="80%" height="290px" src="{{asset('storage'.'/'.$categoria->imagen)}}" alt="ImagenCat">
             </div>
-            <strong><a style="color: blue" href="#">Ver más Productos</a></strong>
+            <strong><a style="color: blue" href="/productos/{{$categoria->nombre}}">Ver más Productos</a></strong>
           </div>
-        @endforeach      
+        @endforeach     
+        
+        <!-- Ver productos-->
      
       <footer >           
           <small class="d-block mb-3 text-muted">&copy; Frameworks Laravel 2021</small>

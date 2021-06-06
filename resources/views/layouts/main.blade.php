@@ -57,7 +57,9 @@
         @yield('agregar')
 
         <!-- formulario reset pasword-->
-
+        
+        <!-- ver productos-->
+        @yield('productos')
         
         </body>
 
