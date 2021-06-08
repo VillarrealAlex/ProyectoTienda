@@ -22,4 +22,12 @@ class Producto extends Model
 
         return $this->belongsTo('App\Models\Categoria');
     }
+
+    //scope de producto activo(producto a la venta)
+
+    public function scopeActivo($query){
+
+        return $query->where('consecionado', true);
+    }
+
 }

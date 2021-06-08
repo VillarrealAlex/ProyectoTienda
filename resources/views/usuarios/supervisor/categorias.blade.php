@@ -6,7 +6,7 @@
 
 <!-- Custom styles for this template-->
 <link href="{{ asset('/admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-<!--script>
+<script>
     $(document).ready(function(){
         // Activate tooltip
         $('[data-toggle="tooltip"]').tooltip();
@@ -30,7 +30,7 @@
             }
         });
     });
-    </script-->
+    </script>
 <div id="wrapper" >
     @include('layouts.sidebar')
 
@@ -53,6 +53,9 @@
                                         <i class="material-icons">&#xE147;</i> <span>Agregar Nueva Categoría</span>
                                     </a>					
                                 </div>
+                                @if (Session::has('producto_agregado'))
+                                    <p style="color: red">{{session('producto_agregado')}}</p>
+                                @endif
                            <div class="container" style="margin-top: 30pt">
                                <table class="table table-striped ">
                                     <thead class="thead thead-dark">
@@ -118,13 +121,14 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    <button  class="btn btn-warning"> Mostrar</button>
-                                                <form style="margin-top: 10px; margin-left:16px" action="eliminar/categoria/{{$categoria->id}}" method="POST" onsubmit="return confirm('Desea eliminar este elemento?');">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger"> Eliminar </button>
+                                                    <a href="productos/{{$categoria->id}}"><button  class="btn btn-warning"> Productos</button></a>
+                                                    <!--a href="#"><button  class="btn btn-primary"> Agregar Productos</button></a-->
                                                     
-                                                </form>
+                                                    <form style="margin-top: 10px; margin-left:16px" action="eliminar/categoria/{{$categoria->id}}" method="POST" onsubmit="return confirm('Desea eliminar este elemento?');">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger"> Eliminar </button>
+                                                    </form>                                                
                                                 </td>
                                                @empty
                                                     <tr>
@@ -140,7 +144,25 @@
        </div>
    </div>
 </div>
-
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Desea Cerrar Sesión?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">Clic en "Aceptar" para cerrar sesion.</div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-primary" href=" {{url('/logout')}}">Aceptar</a>
+        </div>
+    </div>
+</div>
+</div>
 
 <!-- Nueva Categoria Modal HTML -->
 <div id="addEmployeeModal" class="modal fade">
@@ -154,7 +176,7 @@
 				</div>
 				<div class="modal-body" >					
 					<div class="form-group">
-						<label for="nombre">Name</label>
+						<label for="nombre">Nombre de la categoria</label>
 						<input type="text" name="nombre" class="form-control" required>
 					</div>
 					<div class="form-group">
@@ -175,25 +197,6 @@
 	</div>
 </div>
 
- <!-- Logout Modal-->
- <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
- aria-hidden="true">
- <div class="modal-dialog" role="document">
-     <div class="modal-content">
-         <div class="modal-header">
-             <h5 class="modal-title" id="exampleModalLabel">Desea Cerrar Sesión?</h5>
-             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                 <span aria-hidden="true">×</span>
-             </button>
-         </div>
-         <div class="modal-body">Clic en "Aceptar" para cerrar sesion.</div>
-         <div class="modal-footer">
-             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-             <a class="btn btn-primary" href="">Aceptar</a>
-         </div>
-     </div>
- </div>
-</div>
 
 <!-- Bootstrap core JavaScript-->
 <script src="{{ asset('/admin/vendor/jquery/jquery.min.js') }}"></script>

@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bienvenido</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/product/">
+    <!--link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/product/"-->
 
     
 
     <!-- Bootstrap core CSS -->
 <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-
+<link rel="stylesheet" href="{{asset('vendor/jquery_ui/jquery-ui.min.css')}}">
     <!-- Favicons -->
 <meta name="theme-color" content="#7952b3">
 
@@ -55,13 +55,13 @@
               </li>
             </ul>
             <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+              <input name="Bcategoria" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" value="{{$Bcategoria}}">
               <button class="btn btn-outline-success" type="submit">Buscar</button>
             </form>
           </div>
         </div>
       </nav>
-      
+
       <main>
         <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
           <div class="col-md-5 p-lg-5 mx-auto my-5">
@@ -74,10 +74,8 @@
           <div class="product-device shadow-sm d-none d-md-block"></div>
           <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
         </div>
-        
       </main>
 
-     
         @foreach ($categorias as $categoria)
           <div style="width: 50%; heigth:50%; margin-left:200pt; border-radius:8%; margin-top:15pt;" class=" me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-dark overflow-hidden">
             <div class="my-3 py-3">
@@ -88,17 +86,29 @@
             <div class=" shadow-sm mx-auto" style="width: 100%; height: 100%; border-radius: 21px 21px 0 0;"> 
               <img width="80%" height="290px" src="{{asset('storage'.'/'.$categoria->imagen)}}" alt="ImagenCat">
             </div>
-            <strong><a style="color: blue" href="/productos/{{$categoria->nombre}}">Ver más Productos</a></strong>
+            <strong><a style="color: blue" href="/productos/{{$categoria->id}}/{{$categoria->nombre}}">Ver más Productos</a></strong>
           </div>
+        
         @endforeach     
         
         <!-- Ver productos-->
-     
+        
+   
       <footer >           
           <small class="d-block mb-3 text-muted">&copy; Frameworks Laravel 2021</small>
     </footer>
           <script 
                 src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+          </script>
+          <script src="{{asset('vendor/jquery_ui/jquery-ui.min.js')}}"></script>
+
+          <script>
+              var categoria = ['celulares','ropa','electronica'];
+              
+              $('#search').autocomplete({
+
+                source: categoria
+              })
           </script>
 </body>
 </html>

@@ -10,13 +10,17 @@ use App\Models\Producto;
 class PrimerController extends Controller
 {
    
-    public function index()
+    public function index(Request $request)
     {
         //
-        $categorias = DB::table('categoria')
-                            ->paginate();
+        $Bcategoria = $request ->get('Bcategoria');
 
-        return view('inicio', compact('categorias'));
+        $categorias = DB::table('categoria')
+                            //->where('activo','=',true)
+                             ->where('nombre','LIKE','%'.$Bcategoria.'%')
+                            ->get();
+
+        return view('inicio', compact('categorias','Bcategoria'));
 
        // return view('inicio');
     }
@@ -31,15 +35,29 @@ class PrimerController extends Controller
         return view('auth.register');
     }
 
-    public function veProductos(){
+    public function veProductos(Request $request, $id){
 
-        $productos = DB::table('productos')
-                    ->join('categoria','productos.categoria_id','=','categoria.id')
-                    ->select('productos.nombre','productos.precio','productos.descripcion','productos.imagen')
-                    ->groupBy('productos.nombre','productos.precio','productos.descripcion','productos.imagen')
-                    ->paginate(6);
+        $prod = Categoria::find($id);
+        $Bprod = $request->get('Bprod');
 
-        return view('productos',compact('productos'));
+        if ($id != null) {
+            $productos = Producto::activo()->where('categoria_id',$id)
+                        //->where('consecionado','=',1)
+                        ->where('nombre','LIKE','%'.$Bprod.'%')
+                        ->get();
+            /*$prod = Producto::select('productos.nombre')
+            ->join('categoria', 'productos.categoria_id', '=', 'categoria.id')
+            //->where('productos.categoria_id','=',[[$id]])
+            ->get();*/
+
+            //return $product;
+        return view('productos',compact('productos','prod','Bprod'));
+        } else {
+            # code...
+        }
+        
+        
+        
     }
    
     public function create()

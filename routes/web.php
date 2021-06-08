@@ -44,7 +44,7 @@ Route::get('configuracion',[ClientesController::class,'Password'])->name('config
 Route::post('configuracion/{id}',[ClientesController::class,'updatePassword'])->name('nuevoPass');
 Route::delete('eliminar-cuenta/{id}',[ClientesController::class,'eliminarCuenta'])->name('eliminar');
 
-Route::get('productos/{nombre}',[PrimerController::class,'veProductos']);
+Route::get('productos/{id}/{nombre}',[PrimerController::class,'veProductos']);
 
 //********************************************* RUTAS SUPERVISOR********************************* */
 Route::get('usuarios',[SupervisorController::class,'index'])->middleware('auth')->name('users');
@@ -60,5 +60,8 @@ Route::get('categorias',[CategoriaController::class,'listarCategorias'])->name('
 Route::post('nueva/categoria',[CategoriaController::class,'store'])->middleware('auth')->name('nueva.categoria');
 Route::put('editar/categoria/{id}',[CategoriaController::class,'update'])->middleware('auth');
 Route::delete('eliminar/categoria/{id}',[CategoriaController::class,'destroy'])->middleware('auth');
+
+Route::get('productos/{id}',[ProductosController::class,'index'])->middleware('auth');
+Route::post('nuevo/producto',[ProductosController::class,'store'])->middleware('auth')->name('nuevo.producto');
 
 Route::resource('categoria','App\Http\Controllers\CategoriaController');
