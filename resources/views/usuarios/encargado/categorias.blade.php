@@ -45,16 +45,28 @@
                         <div class="table-title">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <h3>Administrar <b> Productos de: </b><b style="color:red"> {{$prod->nombre}} ID({{$prod->id}})</b></h3>
+                                    <h2>Administrar <b>Categorias</b></h2>
                                 </div>
-                                @if (Session::has('producto_eliminado'))
-                                    <p style="color: red">{{session('producto_eliminado')}}</p>
-                                 @endif
-                                <div class="col-sm-4" >
-                                    <a href="#addProduct" class="btn btn-success" data-toggle="modal">
-                                        <i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Producto</span>
+
+                                <div class="col-sm-6">
+                                    <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
+                                        <i class="material-icons">&#xE147;</i> <span>Agregar Nueva Categoría</span>
                                     </a>					
                                 </div>
+                                @if (Session::has('producto_agregado'))
+                                    <p style="color: red">{{session('producto_agregado')}}</p>
+                                @endif
+
+                                @if (Session::has('categoria_eliminado'))
+                                <p style="color: red">{{session('categoria_eliminado')}}</p>
+                                @endif
+                                @if (Session::has('categoria_editada'))
+                                <p style="color: red">{{session('categoria_editada')}}</p>
+                                @endif
+                                <form class="d-flex" style="float: left">
+                                    <input name="Bcategoria" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" value="{{$Bcat}}">
+                                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                                  </form>
                            <div class="container" style="margin-top: 30pt">
                                <table class="table table-striped ">
                                     <thead class="thead thead-dark">
@@ -63,7 +75,7 @@
                                             <th scope="col"  class="text-center">Imagen</th>
                                             <th scope="col"  class="text-center">Nombre</th>
                                             <th scope="col"  class="text-center">Descripción</th>
-                                            <th scope="col"  class="text-center">Precio</th>
+                                          
                                         
                                             <th scope="col"  class="text-center">Acciones</th>
                                         </tr>
@@ -71,47 +83,43 @@
 
                                     <tbody>
                                         
-                                         @forelse ($productos as $producto)
+                                         @forelse ($categorias as $categoria)
                             
                                             <tr>
                                                 <td class="text-center">{{$loop->iteration}}</td>
                                                 <td class="text-center">
-                                                    <img src="{{asset('storage'.'/'.$producto->imagen)}}" alt="Avatar" width="110px" height="100px">
+                                                    <img src="{{asset('storage'.'/'.$categoria->imagen)}}" alt="Avatar" width="110px" height="100px">
                                                 </td>
-                                                <td class="text-center" >{{$producto->nombre}}</td>
-                                                <td class="text-center" >{{$producto->descripcion}}</td>
-                                                <td class="text-center" >{{$producto->precio}}</td>
+                                                <td class="text-center" >{{$categoria->nombre}}</td>
+                                                <td class="text-center" >{{$categoria->descripcion}}</td>
                                               
                                                 <td class="text-center">
-                                                    <button data-target="#editProducto{{$producto->id}}" class="btn btn-success" data-toggle="modal">Editar</button>
+                                                    <button data-target="#editCategoria{{$categoria->id}}" class="btn btn-success" data-toggle="modal">Editar</button>
+                                                    
                                                     <!-- Editar Categoria Modal HTML -->
-                                                        <div id="editProducto{{$producto->id}}" class="modal fade">
+                                                        <div id="editCategoria{{$categoria->id}}" class="modal fade">
                                                             <div class="modal-dialog">
                                                                 <div class="modal-content">
-                                                                    <form action="#" method="POST" enctype="multipart/form-data">
+                                                                    <form action="/editar/categoria/encargado/{{$categoria->id}}" method="POST" enctype="multipart/form-data">
                                                                         {{ csrf_field() }}
                                                                         @method('PUT')
                                                                         <div class="modal-header">						
-                                                                            <h4 class="modal-title" style="color: rebeccapurple"><strong>Editar Producto </strong></h4>
+                                                                            <h4 class="modal-title" style="color: rebeccapurple"><strong>Editar Categoria </strong></h4>
                                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                                         </div>
                                                                         <div class="modal-body">					
                                                                             <div class="form-group">
-                                                                                <label for="nombre" style="color: black"><strong>Nombre del Producto </strong></label>
-                                                                                <input name="nombre" type="text" class="form-control" value="{{$producto->nombre}}" required>
+                                                                                <label for="nombre" style="color: black"><strong>Nombre de la Categoria </strong></label>
+                                                                                <input name="nombre" type="text" class="form-control" value="{{$categoria->nombre}}" required>
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label for="descripcion" style="color: black" ><strong> Descripcion </strong></label>
-                                                                                <input name="descripcion" class="form-control" value="{{$producto->descripcion}}">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="motivo" style="color: black" ><strong> Motivo </strong></label>
-                                                                                <input name="motivo" class="form-control" value="{{$producto->motivo}}">
+                                                                                <input name="descripcion" class="form-control" value="{{$categoria->descripcion}}">
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label for="imagen" style="color: black"><strong> Imagen </strong></label>
                                                                                 <div class="form-group">
-                                                                                    <img src="{{asset('storage'.'/'.$producto->imagen)}}" alt="ProductoImagen" height="150px" width="30%">
+                                                                                    <img src="{{asset('storage'.'/'.$categoria->imagen)}}" alt="CategoriaImagen" height="150px" width="30%">
                                                                                 </div>
                                                                                 
                                                                                 <input type="file" class="form-control" name="imagen" >
@@ -125,10 +133,10 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    <!--a href="#"><button  class="btn btn-warning"> Productos</button></a-->
+                                                    <!--a href="productos/{{--$categoria->id--}}"><button  class="btn btn-warning"> Productos</button></a-->
                                                     <!--a href="#"><button  class="btn btn-primary"> Agregar Productos</button></a-->
                                                     
-                                                    <form style="margin-top: 10px; margin-left:16px" action="/eliminar/producto/{{$producto->id}}" method="POST" onsubmit="return confirm('Desea eliminar este elemento?');">
+                                                    <form style="margin-top: 10px; margin-left:16px" action="/eliminar/categoria/encargado/{{$categoria->id}}" method="POST" onsubmit="return confirm('Desea eliminar este elemento?');">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger"> Eliminar </button>
@@ -136,7 +144,7 @@
                                                 </td>
                                                @empty
                                                     <tr>
-                                                        <td style="color: red">Sin Productos Que Mostrar</td>
+                                                        <td style="color: red">Sin Categorias Que mostrat</td>
                                                     </tr>
                                             </tr>
                                         @endforelse
@@ -168,36 +176,24 @@ aria-hidden="true">
 </div>
 </div>
 
-<!-- Nuevo producto Modal HTML -->
-<div id="addProduct" class="modal fade">
+<!-- Nueva Categoria Modal HTML -->
+<div id="addEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form action="{{route('nuevo.producto')}}" method="POST" enctype="multipart/form-data">
+			<form action="{{route('nueva.categoria.E')}}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
 				<div class="modal-header">						
-					<h4 class="modal-title">Agregue un Producto </h4>
+					<h4 class="modal-title">Agregue Nueva Categoría </h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body" >					
 					<div class="form-group">
-						<label for="nombre">Nombre</label>
+						<label for="nombre">Nombre de la categoria</label>
 						<input type="text" name="nombre" class="form-control" required>
 					</div>
 					<div class="form-group">
 						<label for="descripcion">Descripcion</label>
 						<textarea name="descripcion" class="form-control" required></textarea>
-					</div>
-                    <div class="form-group">
-						<label for="precio">Precio</label>
-						<input type="text" name="precio" class="form-control" required>
-					</div>
-                    <div class="form-group">
-						<label for="motivo">Motivo</label>
-						<input type="text" name="motivo" class="form-control" required>
-					</div>
-                    <div class="form-group">
-						<label for="categoria_id">ID de Categoria</label>
-						<input type="text" name="categoria_id" class="form-control" required>
 					</div>
 					<div class="form-group">
 						<label >Imagen</label>

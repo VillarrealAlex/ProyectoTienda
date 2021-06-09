@@ -76,6 +76,7 @@
         </div>
       </main>
 
+
         @foreach ($categorias as $categoria)
           <div style="width: 50%; heigth:50%; margin-left:200pt; border-radius:8%; margin-top:15pt;" class=" me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-dark overflow-hidden">
             <div class="my-3 py-3">

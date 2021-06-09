@@ -56,6 +56,14 @@
                                 @if (Session::has('producto_agregado'))
                                     <p style="color: red">{{session('producto_agregado')}}</p>
                                 @endif
+
+                                @if (Session::has('producto_eliminado'))
+                                <p style="color: red">{{session('producto_eliminado')}}</p>
+                                @endif
+                                <form class="d-flex" style="float: left">
+                                    <input name="Bcategoria" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" value="{{$Bcat}}">
+                                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                                  </form>
                            <div class="container" style="margin-top: 30pt">
                                <table class="table table-striped ">
                                     <thead class="thead thead-dark">

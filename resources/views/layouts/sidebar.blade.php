@@ -107,12 +107,12 @@
                 Menú 
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('categoria.encargado')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Categoria</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/productos/encargado">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Producto</span></a>
             </li>
