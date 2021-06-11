@@ -53,9 +53,7 @@
                                         <i class="material-icons">&#xE147;</i> <span>Agregar Nueva Categoría</span>
                                     </a>					
                                 </div>
-                                @if (Session::has('producto_agregado'))
-                                    <p style="color: red">{{session('producto_agregado')}}</p>
-                                @endif
+                                
 
                                 @if (Session::has('producto_eliminado'))
                                 <p style="color: red">{{session('producto_eliminado')}}</p>
@@ -129,7 +127,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    <a href="productos/{{$categoria->id}}"><button  class="btn btn-warning"> Productos</button></a>
+                                                    {{--<a href="productos/{{$categoria->id}}"><button  class="btn btn-warning"> Productos</button></a>--}}
                                                     <!--a href="#"><button  class="btn btn-primary"> Agregar Productos</button></a-->
                                                     
                                                     <form style="margin-top: 10px; margin-left:16px" action="eliminar/categoria/{{$categoria->id}}" method="POST" onsubmit="return confirm('Desea eliminar este elemento?');">

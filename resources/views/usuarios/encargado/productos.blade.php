@@ -3,6 +3,7 @@
 <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
+    <!-- data tables-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"> 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css"> 
 <!-- Custom styles for this template-->
@@ -48,22 +49,16 @@
                                 <div class="col-sm-6">
                                     <h2><b></b>Productos</h2>
                                 </div>
-
-                                <!--div class="col-sm-6">
-                                    <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
-                                        <i class="material-icons">&#xE147;</i> <span>Agregar Nueva Categoría</span>
-                                    </a>					
-                                </div-->
         
                            <div class="container" style="margin-top: 30pt">
                                <table id="prod" class="table table-striped ">
-                                    <thead class="thead thead-dark">
+                                    <thead id="prod" class="thead thead-dark">
                                         <tr>
                                             <th scope="col"  class="text-center">#</th>
                                             <th scope="col"  class="text-center">Imagen</th>
                                             <th scope="col"  class="text-center">Nombre</th>
                                             <th scope="col"  class="text-center">Descripción</th>
-                                          
+                                            <th scope="col"  class="text-center">Precio</th>
                                         
                                             <th scope="col"  class="text-center">Acciones</th>
                                         </tr>
@@ -80,6 +75,58 @@
                                                 </td>
                                                 <td class="text-center" >{{$producto->nombre}}</td>
                                                 <td class="text-center" >{{$producto->descripcion}}</td>
+                                                <td class="text-center" >${{$producto->precio}} /MXN</td>
+                                                <td class="text-center">
+                                                    <button data-target="#editProducto{{$producto->id}}" class="btn btn-success" data-toggle="modal">Editar</button>
+                                                    <!-- Editar Categoria Modal HTML -->
+                                                        <div id="editProducto{{$producto->id}}" class="modal fade">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <form action="#" method="POST" enctype="multipart/form-data">
+                                                                        {{ csrf_field() }}
+                                                                        @method('PUT')
+                                                                        <div class="modal-header">						
+                                                                            <h4 class="modal-title" style="color: rebeccapurple"><strong>Editar Producto </strong></h4>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                        </div>
+                                                                        <div class="modal-body">					
+                                                                            <div class="form-group">
+                                                                                <label for="nombre" style="color: black"><strong>Nombre del Producto </strong></label>
+                                                                                <input name="nombre" type="text" class="form-control" value="{{$producto->nombre}}" required>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="descripcion" style="color: black" ><strong> Descripcion </strong></label>
+                                                                                <input name="descripcion" class="form-control" value="{{$producto->descripcion}}">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="motivo" style="color: black" ><strong> Motivo </strong></label>
+                                                                                <input name="motivo" class="form-control" value="{{$producto->motivo}}">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="imagen" style="color: black"><strong> Imagen </strong></label>
+                                                                                <div class="form-group">
+                                                                                    <img src="{{asset('storage'.'/'.$producto->imagen)}}" alt="ProductoImagen" height="150px" width="30%">
+                                                                                </div>
+                                                                                
+                                                                                <input type="file" class="form-control" name="imagen" >
+                                                                            </div>			
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                                                                            <input type="submit" class="btn btn-info" value="Guardar Cambios">
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <a href="/revisar/producto/{{$producto->id}}"><button  class="btn btn-warning"> Revisar</button></a>
+        
+                                                    <form style="margin-top: 10px; margin-left:16px" action="/eliminar/producto/{{$producto->id}}" method="POST" onsubmit="return confirm('Desea eliminar este elemento?');">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger"> Eliminar </button>
+                                                    </form>                                                
+                                                </td>
                                                @empty
                                                     <tr>
                                                         <td style="color: red">Sin Productos Que mostrar</td>
@@ -135,7 +182,19 @@ aria-hidden="true">
 <script src="{{ asset('/admin/js/demo/chart-pie-demo.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script> 
 <script>
-    $(document).ready(function() {
-    $('#prod').DataTable();
-} );
+    $('#prod').DataTable({
+    responsive:true,
+            "language": {
+            "lengthMenu": "Mostrando _MENU_ registros por página",
+            "zeroRecords": "No hay resultados  :(",
+            "info": "Mostrando la página _PAGE_ de _PAGES_",
+            "infoEmpty": "Sin registros encontrados",
+            "infoFiltered": "(filtrado de  _MAX_ registros totales)",
+            "search": "Buscar",
+            "paginate":{
+              "next": "Siguiente",
+              "previous": "Anterior",
+            }
+        }
+  });
 </script>

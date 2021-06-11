@@ -25,9 +25,10 @@ class Producto extends Model
 
     //scope de producto activo(producto a la venta)
 
-    public function scopeActivo($query){
+    public function scopeActivo($query ){
 
         return $query->where('consecionado', true);
+        
     }
 
 }

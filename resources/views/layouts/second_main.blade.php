@@ -48,7 +48,7 @@
 
                     <!-- Clientes-->
                     @yield('clientes')
-                   
+                   @yield('productos')
                     <!-- Administrador-->
                     @yield('admin')
                 

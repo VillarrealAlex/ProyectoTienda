@@ -33,6 +33,7 @@ class EncargadosController extends Controller
         $productos = DB::table('productos')
         ->get();
 
+
         return view('usuarios.encargado.productos', compact('productos'));
     }
 

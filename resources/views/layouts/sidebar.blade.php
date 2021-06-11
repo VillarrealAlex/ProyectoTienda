@@ -22,17 +22,17 @@
             </div>
             <li class="nav-item">
                 <a class="nav-link" href="{{route('users')}}">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-fw fa-user"></i>
                     <span>Usuarios</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{route('categorias')}}">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-fw fa-file"></i>
                     <span>Categorias</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-table"></i>
+                <a class="nav-link" href="{{route('productos')}}">
+                    <i class="fas fa-fw fa-box"></i>
                     <span>Productos</span></a>
             </li>
             <!-- Divider -->
@@ -66,13 +66,13 @@
             Menú 
         </div>
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-table"></i>
+            <a class="nav-link" href="{{route('categorias')}}">
+                <i class="fas fa-fw fa-file"></i>
                 <span>Categoria</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-table"></i>
+            <a class="nav-link" href="{{route('productos')}}">
+                <i class="fas fa-fw fa-box"></i>
                 <span>Producto</span></a>
         </li>
         <!-- Divider -->
@@ -108,13 +108,19 @@
             </div>
             <li class="nav-item">
                 <a class="nav-link" href="{{route('categoria.encargado')}}">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-fw fa-file"></i>
                     <span>Categoria</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/productos/encargado">
-                    <i class="fas fa-fw fa-table"></i>
+                <a class="nav-link" href="{{route('productos')}}">
+                    <i class="fas fa-fw fa-box"></i>
                     <span>Producto</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('users')}}">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Usuarios</span></a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

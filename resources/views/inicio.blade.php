@@ -78,18 +78,19 @@
 
 
         @foreach ($categorias as $categoria)
-          <div style="width: 50%; heigth:50%; margin-left:200pt; border-radius:8%; margin-top:15pt;" class=" me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-dark overflow-hidden">
+        <div class="row">
+          <div  style="width: 50%; heigth:50%; margin-left:200pt; border-radius:8%; margin-top:15pt;" class=" me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-dark overflow-hidden; float-left">
             <div class="my-3 py-3">
              <strong> <h1 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif" class="">{{$categoria->nombre}}</h1></strong>
               <strong><p class="">{{$categoria->descripcion}}</p></strong>
             
             </div>
-            <div class=" shadow-sm mx-auto" style="width: 100%; height: 100%; border-radius: 21px 21px 0 0;"> 
+            <div class=" shadow-sm mx-auto" style="width: 250pt; height: 200pt; border-radius: 21px 21px 0 0;"> 
               <img width="80%" height="290px" src="{{asset('storage'.'/'.$categoria->imagen)}}" alt="ImagenCat">
             </div>
             <strong><a style="color: blue" href="/productos/{{$categoria->id}}/{{$categoria->nombre}}">Ver más Productos</a></strong>
           </div>
-        
+        </div>
         @endforeach     
         
         <!-- Ver productos-->

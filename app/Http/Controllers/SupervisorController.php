@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
@@ -15,13 +15,33 @@ class SupervisorController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+
+    public function index(Request $request)
     {
-        //
-        $users = DB::table('users')
-                //->where('id','!=',[[$users->id]])
+        $Buser = $request->get('Buser');
+        switch (Auth::user()->rol) {
+          
+            case 'Encargado':
+                $Buser = $request->get('Buser');
+                $users = DB::table('users')
+                ->where('rol','!=','Supervisor')
+                ->where('name','LIKE','%'.$Buser.'%')
                 ->paginate();
-        return view('usuarios.supervisor.users', compact('users'));
+                return view('usuarios.supervisor.users', compact('users','Buser'));
+                break;
+            
+            default:
+            $Buser = $request->get('Buser');
+            $users = DB::table('users')
+                //->where('rol','!=','Supervisor')
+                ->where('name','LIKE','%'.$Buser.'%')
+                ->paginate();
+                return view('usuarios.supervisor.users', compact('users','Buser'));
+                
+                break;
+        }
+        
+       
     }
 
    
@@ -54,7 +74,7 @@ class SupervisorController extends Controller
 
     public function show($id)
     {
-        //
+        return 'Detalle';
     }
 
    

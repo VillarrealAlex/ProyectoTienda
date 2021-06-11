@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -9,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Validation\Validator;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Producto;
+use Illuminate\Support\Facades\DB;
 
 class ClientesController extends Controller
 {
@@ -24,9 +27,25 @@ class ClientesController extends Controller
     }
    
 
-    public function index()
+    public function index($id)
     {
-        
+        $prod = Categoria::find($id);
+        switch (Auth::user()->rol) {
+            case 'Cliente':
+                $cliente = Auth::user()->id;
+                $productos = Producto::activo()
+
+                            ->where('user_id','!=',[[$cliente]]) 
+                            ->where('categoria_id','=',[[$id]])->get(); 
+                    return view("usuarios.client.comprar",compact("productos"));
+                
+                break;
+            default:
+            $productos = Producto::get();
+                 return view("usuarios.supervisor.agregaProductos",compact("productos"));
+            
+                break;
+        }
     }
 
    

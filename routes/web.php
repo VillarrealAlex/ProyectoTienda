@@ -44,8 +44,11 @@ Route::put('perfil/{id}',[ClientesController::class,'update']);
 Route::get('configuracion',[ClientesController::class,'Password'])->name('config');
 Route::post('configuracion/{id}',[ClientesController::class,'updatePassword'])->name('nuevoPass');
 Route::delete('eliminar-cuenta/{id}',[ClientesController::class,'eliminarCuenta'])->name('eliminar');
+Route::get('ver-productos/{id}',[ClientesController::class,'index']);
 
 Route::get('productos/{id}/{nombre}',[PrimerController::class,'veProductos']);
+Route::get('productos',[ProductosController::class,'indexC'])->middleware('auth')->name('productos');
+
 
 //********************************************* RUTAS SUPERVISOR********************************* */
 Route::get('usuarios',[SupervisorController::class,'index'])->middleware('auth')->name('users');
@@ -65,14 +68,15 @@ Route::delete('eliminar/categoria/{id}',[CategoriaController::class,'destroy'])-
 Route::get('productos/{id}',[ProductosController::class,'index'])->middleware('auth');
 Route::post('nuevo/producto',[ProductosController::class,'store'])->middleware('auth')->name('nuevo.producto');
 Route::delete('eliminar/producto/{id}',[ProductosController::class,'destroy'])->middleware('auth');
-
-
+Route::put('editar/producto/{id}',[ProductosController::class,'update'])->middleware('auth');
 //*************************************************   RUTAS DE ENCARGADO ***************************** */
 
 Route::get('encargado/categoria',[EncargadosController::class,'index'])->middleware('auth')->name('categoria.encargado');
 Route::post('nueva/categoria/encargado',[CategoriaController::class,'storeE'])->middleware('auth')->name('nueva.categoria.E');
 Route::put('editar/categoria/encargado/{id}',[CategoriaController::class,'UpdateE']);
 Route::delete('eliminar/categoria/encargado/{id}', [CategoriaController::class,'eliminarE']);
+Route::put('editar/producto/encargado/{id}',[ProductosController::class,'UpdateE']);
+Route::get('revisar/producto/{id}',[ProductosController::class,'show'])->middleware('auth');
 
 Route::get('productos/encargado',[EncargadosController::class,'listarProd'])->name('productos.encargado');
 

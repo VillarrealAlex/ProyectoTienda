@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
+
 {
     /**
      * Create a new controller instance.
@@ -32,7 +34,8 @@ class HomeController extends Controller
            return view('usuarios.admin.admin');
        } else 
             if($user->rol=='Cliente') {
-                return view('usuarios.client.clientes');
+                $productos = DB::table('categoria')->get();
+                return view('usuarios.client.clientes',compact('productos'));
        }else 
              if($user->rol == 'Supervisor'){
                 return view('usuarios.supervisor.supervisor');

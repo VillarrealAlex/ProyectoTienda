@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Support\Facades\Auth;
 
 class CategoriaController extends Controller
 {
@@ -25,27 +25,26 @@ class CategoriaController extends Controller
 
    public function mostrarCategorias(){
 
-        $categorias = DB::table('categoria')
-                            ->get();
+            $categorias = DB::table('categoria')
+                   ->get();
 
         return view('inicio', compact('categorias'));
-
    }
 
    public function listarCategorias(Request $request){
+    
     if (auth()->user()) {
         # code...
         $user = auth()->user();
         $Bcat = $request->get('Bcategoria');
-    $categorias  = DB::table('categoria')
+        $categorias  = DB::table('categoria')
                     ->where('nombre','LIKE','%'.$Bcat.'%')
                     ->paginate();
    
         return view('usuarios.supervisor.categorias', compact('categorias','Bcat'));
     }else{
     return view('/home');
-    }
-}
+    }}
 
 
     public function create()

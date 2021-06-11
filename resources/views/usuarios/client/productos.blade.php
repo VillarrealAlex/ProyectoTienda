@@ -3,9 +3,7 @@
 <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
-<!-- data tables-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"> 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css"> 
+
 <!-- Custom styles for this template-->
 <link href="{{ asset('/admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 <script>
@@ -56,15 +54,15 @@
                                     <p style="color: red">{{session('producto_eliminado')}}</p>
                                  @endif
                                  @if (Session::has('producto_editado'))
-                                    <p style="color: red">{{session('producto_editado')}}</p>
-                                 @endif
+                                 <p style="color: red">{{session('producto_editado')}}</p>
+                              @endif
                                 <div class="col-sm-4" >
                                     <a href="#addProduct" class="btn btn-success" data-toggle="modal">
                                         <i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Producto</span>
                                     </a>					
                                 </div>
                            <div class="container" style="margin-top: 30pt">
-                               <table id="prodd" class="table table-striped ">
+                               <table class="table table-striped ">
                                     <thead class="thead thead-dark">
                                         <tr>
                                             <th scope="col"  class="text-center">#</th>
@@ -72,6 +70,7 @@
                                             <th scope="col"  class="text-center">Nombre de Producto</th>
                                             <th scope="col"  class="text-center">Descripción</th>
                                             <th scope="col"  class="text-center">Precio</th>
+                                        
                                             <th scope="col"  class="text-center">Acciones</th>
                                         </tr>
                                     </thead>
@@ -116,6 +115,10 @@
                                                                                 <input name="motivo" class="form-control" value="{{$producto->motivo}}">
                                                                             </div>
                                                                             <div class="form-group">
+                                                                                <label for="precio" style="color: black" ><strong> Precio </strong></label>
+                                                                                <input name="precio" class="form-control" value="{{$producto->precio}}">
+                                                                            </div>
+                                                                            <div class="form-group">
                                                                                 <label for="imagen" style="color: black"><strong> Imagen </strong></label>
                                                                                 <div class="form-group">
                                                                                     <img src="{{asset('storage'.'/'.$producto->imagen)}}" alt="ProductoImagen" height="150px" width="30%">
@@ -132,49 +135,9 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    <button data-target="{{--#revisarProducto{{$producto->id--}}#" class="btn btn-warning"> Revisar</button>
-                                            
-                                                    <!-- Revisar Producto Modal HTML -->
-                                                    <div id="revisarProducto{{$producto->id}}" class="modal fade">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <form action="#" method="POST" enctype="multipart/form-data">
-                                                                    {{ csrf_field() }}
-                                                                    @method('PUT')
-                                                                    <div class="modal-header">						
-                                                                        <h4 class="modal-title" style="color: rebeccapurple"><strong>Revisar Producto </strong></h4>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                    </div>
-                                                                    <div class="modal-body">					
-                                                                        <div class="form-group">
-                                                                            <label for="nombre" style="color: black"><strong>Nombre del Producto </strong></label>
-                                                                            <input name="nombre" type="text" class="form-control" value="{{$producto->nombre}}" required>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="descripcion" style="color: black" ><strong> Descripcion </strong></label>
-                                                                            <input name="descripcion" class="form-control" value="{{$producto->descripcion}}">
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="motivo" style="color: black" ><strong> Motivo </strong></label>
-                                                                            <input name="motivo" class="form-control" value="{{$producto->motivo}}">
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="imagen" style="color: black"><strong> Imagen </strong></label>
-                                                                            <div class="form-group">
-                                                                                <img src="{{asset('storage'.'/'.$producto->imagen)}}" alt="ProductoImagen" height="150px" width="30%">
-                                                                            </div>
-                                                                            
-                                                                            <input type="file" class="form-control" name="imagen" >
-                                                                        </div>			
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                                                                        <input type="submit" class="btn btn-info" value="Guardar Cambios">
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <!--a href="#"><button  class="btn btn-warning"> Productos</button></a-->
+                                                    <!--a href="#"><button  class="btn btn-primary"> Agregar Productos</button></a-->
+                                                    
                                                     <form style="margin-top: 10px; margin-left:16px" action="/eliminar/producto/{{$producto->id}}" method="POST" onsubmit="return confirm('Desea eliminar este elemento?');">
                                                             @csrf
                                                             @method('DELETE')
@@ -273,26 +236,8 @@ aria-hidden="true">
 
 <!-- Page level plugins -->
 <script src="{{ asset('/admin/vendor/chart.js/Chart.min.js') }}"></script>
-<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+
 <!-- Page level custom scripts -->
 <script src="{{ asset('/admin/js/demo/chart-area-demo.js') }}"></script>
 <script src="{{ asset('/admin/js/demo/chart-pie-demo.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script> 
-<script>
-   $('#prod').DataTable({
-    responsive:true,
-            "language": {
-            "lengthMenu": "Mostrando _MENU_ registros por página",
-            "zeroRecords": "No hay resultados  :(",
-            "info": "Mostrando la página _PAGE_ de _PAGES_",
-            "infoEmpty": "Sin registros encontrados",
-            "infoFiltered": "(filtrado de  _MAX_ registros totales)",
-            "search": "Buscar",
-            "paginate":{
-              "next": "Siguiente",
-              "previous": "Anterior",
-            }
-        }
-  });
-</script>
