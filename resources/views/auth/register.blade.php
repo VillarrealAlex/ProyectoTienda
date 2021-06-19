@@ -45,14 +45,15 @@
                         </div-->
                         <div class="form-group">
                             <label for="password"> Contraseña</label>
-                            <input type="password" name="password" id="password" tabindex="2" class="form-control @error('password') is-invalid @enderror" placeholder="Contraseña" required>
-                       
+                            <input type="password" name="password" id="passwords" tabindex="2" class="form-control @error('password') is-invalid @enderror" placeholder="Contraseña" required>
+                           <input type="checkbox" onclick="verPass()" style="color:rebeccapurple; margin-left:15pt">Ver Contraseña
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                              @enderror
-                        </div>
+                             
+                        </div><br>
                         <!--div class="form-group">
                             <label for="password2"> Confirmar Contraeñas</label>
                             <input type="password" name="password2" id="password2" tabindex="2" class="form-control" placeholder="Confirmar Contraseña" required>
@@ -76,5 +77,17 @@
             </div>
         </div>
     </div>
+    
 </div>
+<script type="text/javascript">
+function verPass(){
+            var x =document.getElementById("passwords");
+            if(x.type== "password"){
+            x.type="text";
+            }else{
+                x.type="password"
+            }
+        }
+</script>
+
 @endsection

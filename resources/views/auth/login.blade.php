@@ -70,8 +70,8 @@
                       </div>
                     <div >
                         <label for="password">Contraseña</label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Contraseña" required>
-                    
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="passwords" name="password" placeholder="Contraseña" required>
+                        <input type="checkbox" onclick="verPass()" style="color:rebeccapurple; margin-left:15pt">Ver Contraseña
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -91,5 +91,15 @@
             
         </div>
     </div>
+    <script type="text/javascript">
+      function verPass(){
+                  var x =document.getElementById("passwords");
+                  if(x.type== "password"){
+                  x.type="text";
+                  }else{
+                      x.type="password"
+                  }
+              }
+      </script>
 </div>
 @endsection
