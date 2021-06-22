@@ -71,13 +71,13 @@ Route::delete('eliminar/producto/{id}',[ProductosController::class,'destroy'])->
 Route::put('editar/producto/{id}',[ProductosController::class,'update'])->middleware('auth');
 //*************************************************   RUTAS DE ENCARGADO ***************************** */
 
-Route::get('encargado/categoria',[EncargadosController::class,'index'])->middleware('auth')->name('categoria.encargado');
+Route::get('categorias/encargado',[EncargadosController::class,'index'])->middleware('auth')->name('categoria.encargado');
 Route::post('nueva/categoria/encargado',[CategoriaController::class,'storeE'])->middleware('auth')->name('nueva.categoria.E');
 Route::put('editar/categoria/encargado/{id}',[CategoriaController::class,'UpdateE']);
 Route::delete('eliminar/categoria/encargado/{id}', [CategoriaController::class,'eliminarE']);
-Route::put('editar/producto/encargado/{id}',[ProductosController::class,'UpdateE']);
-Route::get('revisar/producto/{id}',[ProductosController::class,'show'])->middleware('auth');
 
-Route::get('productos/encargado',[EncargadosController::class,'listarProd'])->name('productos.encargado');
+Route::get('ver/producto/{id}',[ProductosController::class,'show']);
+Route::put('actualizar/prod/{id}',[ProductosController::class,'revisar']);
+Route::delete('eliminar/{id}',[ProductosController::class,'destroyE'])->middleware('auth');
 
 Route::resource('categoria','App\Http\Controllers\CategoriaController');

@@ -66,7 +66,7 @@
                                <table class="table table-striped ">
                                     <thead class="thead thead-dark">
                                         <tr>
-                                            <th scope="col"  class="text-center">#</th>
+                                            <th scope="col"  class="text-center">Categoria ID</th>
                                             <th scope="col"  class="text-center">Imagen</th>
                                             <th scope="col"  class="text-center">Nombre</th>
                                             <th scope="col"  class="text-center">Descripción</th>
@@ -81,7 +81,7 @@
                                          @forelse ($categorias as $categoria)
                             
                                             <tr>
-                                                <td class="text-center">{{$loop->iteration}}</td>
+                                                <td class="text-center">{{$categoria->id}}</td>
                                                 <td class="text-center">
                                                     <img src="{{asset('storage'.'/'.$categoria->imagen)}}" alt="Avatar" width="110px" height="100px">
                                                 </td>

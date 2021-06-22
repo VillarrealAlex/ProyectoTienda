@@ -52,7 +52,6 @@
                             <select name="rol" class="form-control" id="exampleFormControlSelect1">
                               <option hidden>--</option>
                               <option>Cliente</option>
-                              <option>Administrador</option>
                               <option>Encargado</option>
                               <option>Supervisor</option>
                               <option>Contador</option>

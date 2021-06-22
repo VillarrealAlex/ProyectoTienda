@@ -63,6 +63,9 @@
                                 @if (Session::has('categoria_editada'))
                                 <p style="color: red">{{session('categoria_editada')}}</p>
                                 @endif
+                                 @if (Session::has('categoria_agregada'))
+                                <p style="color: red">{{session('categoria_agregada')}}</p>
+                                @endif
                                 <form class="d-flex" style="float: left">
                                     <input name="Bcategoria" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" value="{{$Bcat}}">
                                     <button class="btn btn-outline-success" type="submit">Buscar</button>

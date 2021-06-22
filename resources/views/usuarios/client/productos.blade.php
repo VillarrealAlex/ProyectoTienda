@@ -201,10 +201,10 @@ aria-hidden="true">
 						<label for="precio">Precio</label>
 						<input type="text" name="precio" class="form-control" required>
 					</div>
-                    <div class="form-group">
+                    <!--div class="form-group">
 						<label for="motivo">Motivo</label>
 						<input type="text" name="motivo" class="form-control" required>
-					</div>
+					</div-->
                     <div class="form-group">
 						<label for="categoria_id">ID de Categoria</label>
 						<input type="text" name="categoria_id" class="form-control" required>

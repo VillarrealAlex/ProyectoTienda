@@ -37,6 +37,7 @@ class ClientesController extends Controller
 
                             ->where('user_id','!=',[[$cliente]]) 
                             ->where('categoria_id','=',[[$id]])->get(); 
+                            
                     return view("usuarios.client.comprar",compact("productos"));
                 
                 break;

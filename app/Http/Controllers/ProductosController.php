@@ -44,11 +44,7 @@ class ProductosController extends Controller
                 break;
             case 'Encargado':
                 //$cliente = Auth::user()->id;
-                $productos = Producto::Activo()
-                            ->join('categoria','productos.categoria_id','=','categoria.id')
-                            ->select('productos.nombre','productos.precio','productos.descripcion','productos.imagen')
-                            ->groupBy('productos.nombre','productos.precio','productos.descripcion','productos.imagen')
-                            ->get();  
+                $productos = Producto::get();  
 
                     return view("usuarios.encargado.productos",compact("productos"));
                 
@@ -114,7 +110,7 @@ class ProductosController extends Controller
                 $productos = DB::table('productos')
                             ->where('id','=',[[$id]]) 
                             ->get();
-                    return view("usuarios.encargado.revisar",compact("productos",'revisar'));
+                    return view("usuarios.encargado.revisar",compact('productos','revisar'));
                 
                 break;
 
@@ -163,8 +159,33 @@ class ProductosController extends Controller
         Session::flash('producto_editado','Producto Editado Correctamente');
         return redirect('/productos');
     }
+
+    public function revisar(Request $request, $id){
+        
+       // $this->authorize('product',$id);
+
+        $productos = request()->except(['_token','_method']);
+        // return response()->json($usuarios);
+          if ($request -> hasFile('imagen')) {
+  
+              $prod = Producto::findOrFail($id);
+              Storage::delete('public/'.$prod->imagen);
+              $categorias['imagen']=$request->file('imagen')->store('uploads','public');
+          }
+          Producto::where('id','=',$id)->update($productos);
+          Session::flash('producto_revisado','Este Producto ha sido revisado');
+          return redirect('/productos');
+    }
    
     public function destroy($id)
+    {
+        //
+        Producto::destroy($id);
+        Session::flash('producto_eliminado','Producto eliminado Con Éxito');
+        return redirect('/productos');
+    }
+
+    public function destroyE($id)
     {
         //
         Producto::destroy($id);

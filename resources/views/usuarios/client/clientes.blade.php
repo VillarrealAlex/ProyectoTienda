@@ -7,7 +7,7 @@
         <div class="container">
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">Magnus Store</h2>
-                <h3 class="section-subheading text-muted">Productos Disponibles</h3>
+                <h3 class="section-subheading text-muted">Tenemos diferentes  productos para ti</h3>
             </div>
 
             @foreach ($productos as $item)
@@ -19,12 +19,12 @@
                     <div class="portfolio-item">
                         <a class="portfolio-link" data-bs-toggle="modal" href="ver-productos/{{$item->id}}">
                             <div class="portfolio-hover">
-                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i>Ver productos</div>
                             </div>
                             <img class="img-fluid" src="{{asset('storage'.'/'.$item->imagen)}}" alt="..." style="height: 200pt"/>
                         </a>
                         <div class="portfolio-caption">
-                            <div class="portfolio-caption-heading"><strong style="font-size: 16pt">{{$item->nombre}}</strong></div>
+                            <div class="portfolio-caption-heading"><strong style="font-size: 16pt">Categoira: {{$item->nombre}}</strong></div>
                             
                         </div>
                     </div>

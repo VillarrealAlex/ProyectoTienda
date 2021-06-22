@@ -8,31 +8,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css"> 
 <!-- Custom styles for this template-->
 <link href="{{ asset('/admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-<script>
-    $(document).ready(function(){
-        // Activate tooltip
-        $('[data-toggle="tooltip"]').tooltip();
-        
-        // Select/Deselect checkboxes
-        var checkbox = $('table tbody input[type="checkbox"]');
-        $("#selectAll").click(function(){
-            if(this.checked){
-                checkbox.each(function(){
-                    this.checked = true;                        
-                });
-            } else{
-                checkbox.each(function(){
-                    this.checked = false;                        
-                });
-            } 
-        });
-        checkbox.click(function(){
-            if(!this.checked){
-                $("#selectAll").prop("checked", false);
-            }
-        });
-    });
-    </script>
+
 <div id="wrapper" >
     @include('layouts.sidebar')
 
@@ -48,6 +24,13 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <h2><b></b>Productos</h2>
+                                    @if (Session::has('producto_revisado'))
+                                        <p style="color: red">{{session('producto_revisado')}}</p>
+                                    @endif
+
+                                    @if (Session::has('producto_eliminado'))
+                                    <p style="color: red">{{session('producto_eliminado')}}</p>
+                                @endif
                                 </div>
         
                            <div class="container" style="margin-top: 30pt">
@@ -57,7 +40,7 @@
                                             <th scope="col"  class="text-center">#</th>
                                             <th scope="col"  class="text-center">Imagen</th>
                                             <th scope="col"  class="text-center">Nombre</th>
-                                            <th scope="col"  class="text-center">Descripción</th>
+                                             <th scope="col"  class="text-center">Descripción</th>
                                             <th scope="col"  class="text-center">Precio</th>
                                         
                                             <th scope="col"  class="text-center">Acciones</th>
@@ -77,51 +60,60 @@
                                                 <td class="text-center" >{{$producto->descripcion}}</td>
                                                 <td class="text-center" >${{$producto->precio}} /MXN</td>
                                                 <td class="text-center">
-                                                    <button data-target="#editProducto{{$producto->id}}" class="btn btn-success" data-toggle="modal">Editar</button>
-                                                    <!-- Editar Categoria Modal HTML -->
-                                                        <div id="editProducto{{$producto->id}}" class="modal fade">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <form action="#" method="POST" enctype="multipart/form-data">
-                                                                        {{ csrf_field() }}
-                                                                        @method('PUT')
-                                                                        <div class="modal-header">						
-                                                                            <h4 class="modal-title" style="color: rebeccapurple"><strong>Editar Producto </strong></h4>
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                
+                                                   <button data-target="#revisarProd{{$producto->id}}" class="btn btn-warning" data-toggle="modal">Revisar</button>
+                                                    <!-- Revisar Producto Modal HTML -->
+                                                    <div id="revisarProd{{$producto->id}}" class="modal fade">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <form action="actualizar/prod/{{$producto->id}}" method="POST" enctype="multipart/form-data">
+                                                                    {{ csrf_field() }}
+                                                                   @method('PUT')
+                                                                    <div class="modal-header">						
+                                                                        <h4 class="modal-title" style="color: rebeccapurple"><strong>Producto </strong></h4>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                    </div>
+                                                                    <div class="modal-body">					
+                                                                        <div class="form-group">
+                                                                            <label for="nombre" style="color: black"><strong>Nombre del Producto </strong></label>
+                                                                            <input name="nombre" type="text" class="form-control" value="{{$producto->nombre}}" required>
                                                                         </div>
-                                                                        <div class="modal-body">					
-                                                                            <div class="form-group">
-                                                                                <label for="nombre" style="color: black"><strong>Nombre del Producto </strong></label>
-                                                                                <input name="nombre" type="text" class="form-control" value="{{$producto->nombre}}" required>
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="descripcion" style="color: black" ><strong> Descripcion </strong></label>
-                                                                                <input name="descripcion" class="form-control" value="{{$producto->descripcion}}">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="motivo" style="color: black" ><strong> Motivo </strong></label>
-                                                                                <input name="motivo" class="form-control" value="{{$producto->motivo}}">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="imagen" style="color: black"><strong> Imagen </strong></label>
-                                                                                <div class="form-group">
-                                                                                    <img src="{{asset('storage'.'/'.$producto->imagen)}}" alt="ProductoImagen" height="150px" width="30%">
-                                                                                </div>
-                                                                                
-                                                                                <input type="file" class="form-control" name="imagen" >
-                                                                            </div>			
+                                                                        <div class="form-group">
+                                                                            <label for="descripcion" style="color: black" ><strong> Descripcion </strong></label>
+                                                                            <input name="descripcion" class="form-control" value="{{$producto->descripcion}}">
                                                                         </div>
-                                                                        <div class="modal-footer">
-                                                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                                                                            <input type="submit" class="btn btn-info" value="Guardar Cambios">
+                                                                        <div class="form-group">
+                                                                            <label for="consecionado" style="color: black" ><strong> Consecionar Producto </strong></label>
+                                                                            <select  name="consecionado" id="consecionado">
+                                                                                <option selected >--</option>
+                                                                                <option value="1">Aceptar Producto</option>
+                                                                                <option value="">Rechazar Producto</option>
+                                                                            </select>
                                                                         </div>
-                                                                    </form>
-                                                                </div>
+                                                                        <div class="form-group">
+                                                                            <label for="motivo" style="color: black" >Escriba un motivo si el producto es rechazado</label>
+                                                                            <input name="motivo" class="form-control" value="">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="imagen" style="color: black"><strong> Imagen </strong></label>
+                                                                            <div class="form-group">
+                                                                                <img src="{{asset('storage'.'/'.$producto->imagen)}}" alt="Imagen" height="150px" width="30%">
+                                                                            </div>
+                                                                            
+                                                                            <input type="file" class="form-control" name="imagen" >
+                                                                        </div>			
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                                                                        <input type="submit" class="btn btn-info" value="Aceptar">
+                                                                    </div>
+                                                                </form>
                                                             </div>
                                                         </div>
-                                                    <a href="/revisar/producto/{{$producto->id}}"><button  class="btn btn-warning"> Revisar</button></a>
-        
-                                                    <form style="margin-top: 10px; margin-left:16px" action="/eliminar/producto/{{$producto->id}}" method="POST" onsubmit="return confirm('Desea eliminar este elemento?');">
+                                                    </div>
+
+
+                                                   <form style="margin-top: 10px; margin-left:16px" action="/eliminar/{{$producto->id}}" method="POST" onsubmit="return confirm('Desea eliminar este elemento?');">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger"> Eliminar </button>

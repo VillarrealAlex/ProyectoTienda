@@ -87,8 +87,8 @@ class CategoriaController extends Controller
             
          }  
          Categoria::insert($users);
- 
-         return redirect('/encargado/categoria');
+         Session::flash('categoria_agregada','Se Ha Agregado Una Categoria ');
+         return redirect('/categorias/encargado');
         }else{
             return view('/home');
         }
@@ -141,7 +141,7 @@ class CategoriaController extends Controller
         }
         Categoria::where('id','=',$id)->update($categorias);
         Session::flash('categoria_editada','Se Ha Editado Una Categoria ');
-        return redirect('/encargado/categoria');
+        return redirect('/categorias/encargado');
 
         }else{
             return view('/home');
@@ -160,6 +160,6 @@ class CategoriaController extends Controller
         //
         Categoria::destroy($id);
         Session::flash('categoria_eliminado','Categoria eliminada ');
-        return redirect('/encargado/categoria');
+        return redirect('/categorias/encargado');
     }
 }
