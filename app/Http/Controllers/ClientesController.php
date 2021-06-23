@@ -57,7 +57,8 @@ class ClientesController extends Controller
 
         $pregunta = DB::table('preguntas')
         ->join('users','preguntas.user_id','=','users.id')
-        ->select('users.name','preguntas.cuerpo')
+        ->select('users.name','preguntas.cuerpo','preguntas.id_pregunta')
+        ->where('preguntas.producto_id','=',[[$id]])
         ->get();
 
        
