@@ -135,7 +135,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    <!--a href="#"><button  class="btn btn-warning"> Productos</button></a-->
+                                                    <a href="#"><button  class="btn btn-warning"> Revisar</button></a>
                                                     <!--a href="#"><button  class="btn btn-primary"> Agregar Productos</button></a-->
                                                     
                                                     <form style="margin-top: 10px; margin-left:16px" action="/eliminar/producto/{{$producto->id}}" method="POST" onsubmit="return confirm('Desea eliminar este elemento?');">

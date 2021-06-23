@@ -24,26 +24,49 @@
                         <strong style="font-size: 16pt">{{$producto->descripcion}}</strong>
                     </div>
                 </div> 
-                
+               
             </div>
             <div class="portfolio-caption-heading">
                 <a href="#"><button class="btn btn-success">Comprar</button></a>
                 <a href="#"><button class="btn btn-warning">Agregar al Carrito</button></a>
             </div>
+            @if (Session::has('pregunta_realizada'))
+            <p style="color: red">{{session('pregunta_realizada')}}</p>
+            @endif
         </div>
     </div>
 
     <div  style="margin-top: 15pt">
         <h4 ><strong> Preguntar al vendedor... </strong></h4>
-        <form action="#" method="POST" class="form-inline">
+        <form action="/guardar/pregunta/{{$producto->id}}" method="POST" class="form-inline">
             {{ csrf_field() }}
+            @method('PUT')
             <div class="form-group mx-sm-3 md-2">
+                <label  for="cuerpo" style="color: blue"><strong> Haz una pregunta... </strong></label>
                 <input type="text" class="form-control " id="pregunta" 
-                       placeholder="Escribe tu pregunta..." name="pregunta" required>
+                       placeholder="Escribe tu pregunta..." name="cuerpo" required>
             </div>
            <div class="form-group mx-sm-3 mb-2">
             <button type="submit" class="btn btn-primary">Preguntar</button>
            </div>
           </form>
         </div>
+
+ 
+        <div class="my-3 p-3 bg-body rounded shadow-sm">
+            <h6 class="border-bottom pb-2 mb-0">Preguntas sobre este producto...</h6>
+            
+            @foreach ($pregunta as $item)
+
+            <div class="d-flex text-muted pt-3">
+              <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+                <div class="d-flex justify-content-between">
+                  <strong class="text-gray-dark">{{$item->name}}</strong>
+                </div>
+                <span class="d-block">{{$item->cuerpo}}</span>
+              </div>
+            </div>
+            
+            @endforeach
+          </div>
 @endsection

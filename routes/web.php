@@ -53,7 +53,7 @@ Route::get('productos',[ProductosController::class,'indexC'])->middleware('auth'
 //como vendedor
 
 Route::get('preguntas/{id}',[ClientesController::class,'preguntar'])->middleware('auth')->name('preguntar');
-Route::post('guardar/pregunta/{id}',[PreguntaController::class,'store']);
+Route::put('guardar/pregunta/{id}',[PreguntaController::class,'update']);
 
 //********************************************* RUTAS SUPERVISOR********************************* */
 Route::get('usuarios',[SupervisorController::class,'index'])->middleware('auth')->name('users');

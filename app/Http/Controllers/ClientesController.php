@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Pregunta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -11,6 +12,7 @@ use App\Models\User;
 use Illuminate\Validation\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Producto;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\DB;
 
 class ClientesController extends Controller
@@ -50,8 +52,16 @@ class ClientesController extends Controller
     }
 
     public function preguntar($id){
+
         $producto = Producto::find($id);
-        return view('usuarios.client.preguntas',compact('producto'));
+
+        $pregunta = DB::table('preguntas')
+        ->join('users','preguntas.user_id','=','users.id')
+        ->select('users.name','preguntas.cuerpo')
+        ->get();
+
+       
+        return view('usuarios.client.preguntas',compact('producto','pregunta'));
     }
 
     public function create()
@@ -60,9 +70,9 @@ class ClientesController extends Controller
     }
 
     
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+       
     }
 
     

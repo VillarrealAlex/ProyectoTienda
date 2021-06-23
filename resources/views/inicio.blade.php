@@ -6,32 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bienvenido</title>
 
-    <!--link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/product/"-->
-
-    
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/product/">
 
     <!-- Bootstrap core CSS -->
-<link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-<link rel="stylesheet" href="{{asset('vendor/jquery_ui/jquery-ui.min.css')}}">
+<link href="{{asset('/css/bootstrap.min.css')}}" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
     <!-- Favicons -->
 <meta name="theme-color" content="#7952b3">
 
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+<style>
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+</style>
+
 
     
     <!-- Custom styles for this template -->
@@ -99,18 +98,6 @@
       <footer >           
           <small class="d-block mb-3 text-muted">&copy; Frameworks Laravel 2021</small>
     </footer>
-          <script 
-                src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
-          </script>
-          <script src="{{asset('vendor/jquery_ui/jquery-ui.min.js')}}"></script>
-
-          <script>
-              var categoria = ['celulares','ropa','electronica'];
-              
-              $('#search').autocomplete({
-
-                source: categoria
-              })
-          </script>
+    <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
