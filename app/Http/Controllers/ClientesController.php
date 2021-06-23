@@ -49,7 +49,11 @@ class ClientesController extends Controller
         }
     }
 
-   
+    public function preguntar($id){
+        $producto = Producto::find($id);
+        return view('usuarios.client.preguntas',compact('producto'));
+    }
+
     public function create()
     {
         //

@@ -25,12 +25,13 @@
                     <strong style="font-size: 16pt">{{$item->descripcion}}</strong>
                 </div>
             </div> 
-            <div class="portfolio-caption-heading">
-                <a href="#"><button class="btn btn-success">Comprar</button></a>
-                <a href="#"><button class="btn btn-warning">Agregar al Carrito</button></a>
-                <a href="#"><button class="btn btn-se" style="color: red">Preguntar por este producto</button></a>
+            
+        </div>
+        <div class="portfolio-caption-heading">
+            <a href="#"><button class="btn btn-success">Comprar</button></a>
+            <a href="#"><button class="btn btn-warning">Agregar al Carrito</button></a>
+            <a href="/preguntas/{{$item->id}}"><button class="btn btn-se" style="color: red">Preguntar por este producto</button></a>
 
-            </div>
         </div>
     </div>
     @endforeach

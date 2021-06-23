@@ -14,7 +14,21 @@ class CreateRespuestasTable extends Migration
     public function up()
     {
         Schema::create('respuestas', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_respuesta');
+
+            $table->text('respuesta');
+
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('pregunta_id')->nullable();
+
+            $table->foreign('user_id')
+                    ->references('id')->on('users')
+                    ->onDelete('set null');
+            
+            $table->foreign('pregunta_id')
+                    ->references('id_pregunta')->on('preguntas')
+                    ->onDelete('set null');
+
             $table->timestamps();
         });
     }

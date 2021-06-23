@@ -7,6 +7,7 @@ use App\Http\Controllers\PrimerController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\EncargadosController;
+use App\Http\Controllers\PreguntaController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\SupervisorController;
@@ -49,6 +50,10 @@ Route::get('ver-productos/{id}',[ClientesController::class,'index']);
 Route::get('productos/{id}/{nombre}',[PrimerController::class,'veProductos']);
 Route::get('productos',[ProductosController::class,'indexC'])->middleware('auth')->name('productos');
 
+//como vendedor
+
+Route::get('preguntas/{id}',[ClientesController::class,'preguntar'])->middleware('auth')->name('preguntar');
+Route::post('guardar/pregunta/{id}',[PreguntaController::class,'store']);
 
 //********************************************* RUTAS SUPERVISOR********************************* */
 Route::get('usuarios',[SupervisorController::class,'index'])->middleware('auth')->name('users');
