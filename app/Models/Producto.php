@@ -27,7 +27,12 @@ class Producto extends Model
 
     public function scopeActivo($query ){
 
-        return $query->where('consecionado', true);
+        return $query->where('consecionado', null);
+        
+    }
+    public function scopeActivoDos($query ){
+
+        return $query->where('consecionado', '!=',null);
         
     }
 

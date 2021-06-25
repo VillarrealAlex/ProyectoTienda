@@ -58,10 +58,10 @@
                                  @if (Session::has('producto_editado'))
                                     <p style="color: red">{{session('producto_editado')}}</p>
                                  @endif
-                                <div class="col-sm-4" >
+                                <!--div class="col-sm-4" >
                                     <a href="#addProduct" class="btn btn-success" data-toggle="modal">
                                         <i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Producto</span>
-                                    </a>					
+                                    </a-->					
                                 </div>
                            <div class="container" style="margin-top: 30pt">
                                <table id="prodd" class="table table-striped ">
@@ -72,6 +72,7 @@
                                             <th scope="col"  class="text-center">Nombre de Producto</th>
                                             <th scope="col"  class="text-center">Descripción</th>
                                             <th scope="col"  class="text-center">Precio</th>
+                                            <th scope="col"  class="text-center">Categoria</th>
                                             <th scope="col"  class="text-center">Acciones</th>
                                         </tr>
                                     </thead>
@@ -88,8 +89,9 @@
                                                 <td class="text-center" >{{$producto->nombre}}</td>
                                                 <td class="text-center" >{{$producto->descripcion}}</td>
                                                 <td class="text-center" >${{$producto->precio}}/MXN</td>
-                                              
+                                                <td class="text-center" >{{$producto->id}}</td>
                                                 <td class="text-center">
+                                                    @if (Auth::user()->rol !='Supervisor')
                                                     <button data-target="#editProducto{{$producto->id}}" class="btn btn-success" data-toggle="modal">Editar</button>
                                                     <!-- Editar Categoria Modal HTML -->
                                                         <div id="editProducto{{$producto->id}}" class="modal fade">
@@ -111,10 +113,10 @@
                                                                                 <label for="descripcion" style="color: black" ><strong> Descripcion </strong></label>
                                                                                 <input name="descripcion" class="form-control" value="{{$producto->descripcion}}">
                                                                             </div>
-                                                                            <div class="form-group">
+                                                                           {{-- <div class="form-group">
                                                                                 <label for="motivo" style="color: black" ><strong> Motivo </strong></label>
                                                                                 <input name="motivo" class="form-control" value="{{$producto->motivo}}">
-                                                                            </div>
+                                                                            </div>--}}
                                                                             <div class="form-group">
                                                                                 <label for="imagen" style="color: black"><strong> Imagen </strong></label>
                                                                                 <div class="form-group">
@@ -132,6 +134,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        @endif
                                                     <button data-target="{{--#revisarProducto{{$producto->id--}}#" class="btn btn-warning"> Revisar</button>
                                             
                                                     <!-- Revisar Producto Modal HTML -->
@@ -154,10 +157,10 @@
                                                                             <label for="descripcion" style="color: black" ><strong> Descripcion </strong></label>
                                                                             <input name="descripcion" class="form-control" value="{{$producto->descripcion}}">
                                                                         </div>
-                                                                        <div class="form-group">
+                                                                       {{-- <div class="form-group">
                                                                             <label for="motivo" style="color: black" ><strong> Motivo </strong></label>
                                                                             <input name="motivo" class="form-control" value="{{$producto->motivo}}">
-                                                                        </div>
+                                                                        </div>--}}
                                                                         <div class="form-group">
                                                                             <label for="imagen" style="color: black"><strong> Imagen </strong></label>
                                                                             <div class="form-group">
@@ -175,11 +178,13 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @if (Auth::user()->rol !='Supervisor')
                                                     <form style="margin-top: 10px; margin-left:16px" action="/eliminar/producto/{{$producto->id}}" method="POST" onsubmit="return confirm('Desea eliminar este elemento?');">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger"> Eliminar </button>
-                                                    </form>                                                
+                                                    </form>     
+                                                    @endif                                           
                                                 </td>
                                                @empty
                                                     <tr>

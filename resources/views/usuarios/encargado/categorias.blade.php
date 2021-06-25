@@ -45,27 +45,10 @@
                         <div class="table-title">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <h2>Administrar <b>Categorias</b></h2>
+                                    <h2> <b>Categorias</b></h2>
                                 </div>
 
-                                <div class="col-sm-6">
-                                    <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
-                                        <i class="material-icons">&#xE147;</i> <span>Agregar Nueva Categoría</span>
-                                    </a>					
-                                </div>
-                                @if (Session::has('producto_agregado'))
-                                    <p style="color: red">{{session('producto_agregado')}}</p>
-                                @endif
-
-                                @if (Session::has('categoria_eliminado'))
-                                <p style="color: red">{{session('categoria_eliminado')}}</p>
-                                @endif
-                                @if (Session::has('categoria_editada'))
-                                <p style="color: red">{{session('categoria_editada')}}</p>
-                                @endif
-                                 @if (Session::has('categoria_agregada'))
-                                <p style="color: red">{{session('categoria_agregada')}}</p>
-                                @endif
+        
                                 <form class="d-flex" style="float: left">
                                     <input name="Bcategoria" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" value="{{$Bcat}}">
                                     <button class="btn btn-outline-success" type="submit">Buscar</button>
@@ -74,13 +57,11 @@
                                <table class="table table-striped ">
                                     <thead class="thead thead-dark">
                                         <tr>
-                                            <th scope="col"  class="text-center">#</th>
+                                            <th scope="col"  class="text-center">ID de Categoria</th>
                                             <th scope="col"  class="text-center">Imagen</th>
                                             <th scope="col"  class="text-center">Nombre</th>
                                             <th scope="col"  class="text-center">Descripción</th>
                                           
-                                        
-                                            <th scope="col"  class="text-center">Acciones</th>
                                         </tr>
                                     </thead>
 
@@ -89,62 +70,14 @@
                                          @forelse ($categorias as $categoria)
                             
                                             <tr>
-                                                <td class="text-center">{{$loop->iteration}}</td>
+                                                <td class="text-center">{{$categoria->id}}</td>
                                                 <td class="text-center">
                                                     <img src="{{asset('storage'.'/'.$categoria->imagen)}}" alt="Avatar" width="110px" height="100px">
                                                 </td>
                                                 <td class="text-center" >{{$categoria->nombre}}</td>
                                                 <td class="text-center" >{{$categoria->descripcion}}</td>
                                               
-                                                <td class="text-center">
-                                                    <button data-target="#editCategoria{{$categoria->id}}" class="btn btn-success" data-toggle="modal">Editar</button>
-                                                    
-                                                    <!-- Editar Categoria Modal HTML -->
-                                                        <div id="editCategoria{{$categoria->id}}" class="modal fade">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <form action="/editar/categoria/encargado/{{$categoria->id}}" method="POST" enctype="multipart/form-data">
-                                                                        {{ csrf_field() }}
-                                                                        @method('PUT')
-                                                                        <div class="modal-header">						
-                                                                            <h4 class="modal-title" style="color: rebeccapurple"><strong>Editar Categoria </strong></h4>
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                        </div>
-                                                                        <div class="modal-body">					
-                                                                            <div class="form-group">
-                                                                                <label for="nombre" style="color: black"><strong>Nombre de la Categoria </strong></label>
-                                                                                <input name="nombre" type="text" class="form-control" value="{{$categoria->nombre}}" required>
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="descripcion" style="color: black" ><strong> Descripcion </strong></label>
-                                                                                <input name="descripcion" class="form-control" value="{{$categoria->descripcion}}">
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="imagen" style="color: black"><strong> Imagen </strong></label>
-                                                                                <div class="form-group">
-                                                                                    <img src="{{asset('storage'.'/'.$categoria->imagen)}}" alt="CategoriaImagen" height="150px" width="30%">
-                                                                                </div>
-                                                                                
-                                                                                <input type="file" class="form-control" name="imagen" >
-                                                                            </div>			
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                                                                            <input type="submit" class="btn btn-info" value="Guardar Cambios">
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    <!--a href="productos/{{--$categoria->id--}}"><button  class="btn btn-warning"> Productos</button></a-->
-                                                    <!--a href="#"><button  class="btn btn-primary"> Agregar Productos</button></a-->
-                                                    
-                                                    <form style="margin-top: 10px; margin-left:16px" action="/eliminar/categoria/encargado/{{$categoria->id}}" method="POST" onsubmit="return confirm('Desea eliminar este elemento?');">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger"> Eliminar </button>
-                                                    </form>                                                
-                                                </td>
+                                                
                                                @empty
                                                     <tr>
                                                         <td style="color: red">Sin Categorias Que mostrat</td>

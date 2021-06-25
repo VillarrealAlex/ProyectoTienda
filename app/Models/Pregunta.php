@@ -22,4 +22,14 @@ class Pregunta extends Model
         return $this->belongsTo('App\Models\Producto');
     }
 
+
+    public function respuestas(){
+        return $this->hasMany('App\Models\Respuesta');
+    }
+
+    public function scopePregunta($query){
+        
+    return $query->where('cuerpo', true);
+    }
+
 }

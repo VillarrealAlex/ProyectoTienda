@@ -44,7 +44,8 @@ class CategoriaController extends Controller
         return view('usuarios.supervisor.categorias', compact('categorias','Bcat'));
     }else{
     return view('/home');
-    }}
+    }
+}
 
 
     public function create()

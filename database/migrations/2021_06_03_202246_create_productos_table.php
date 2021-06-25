@@ -19,10 +19,11 @@ class CreateProductosTable extends Migration
             $table->string('nombre');
             //$table->string('codigo');
             $table->string('descripcion');
+            $table->integer('stock');
             $table->float('precio');
-            $table->string('imagen');
-            $table->tinyInteger('consecionado');
-            $table->string('motivo');
+            $table->string('imagen')->nullable();
+            $table->tinyInteger('consecionado')->nullable();
+            $table->string('motivo')->nullable();
 
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('categoria_id')->nullable();

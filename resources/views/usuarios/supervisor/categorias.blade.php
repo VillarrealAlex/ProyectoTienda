@@ -49,9 +49,12 @@
                                 </div>
 
                                 <div class="col-sm-6">
+                                    @if (Auth::user()->rol == 'Supervisor')
                                     <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
                                         <i class="material-icons">&#xE147;</i> <span>Agregar Nueva Categoría</span>
-                                    </a>					
+                                    </a>
+                                    @endif
+                                    					
                                 </div>
                                 
 
@@ -70,9 +73,10 @@
                                             <th scope="col"  class="text-center">Imagen</th>
                                             <th scope="col"  class="text-center">Nombre</th>
                                             <th scope="col"  class="text-center">Descripción</th>
-                                          
-                                        
+                                          @if (Auth::user()->rol =='Supervisor')
+                                                                                     
                                             <th scope="col"  class="text-center">Acciones</th>
+                                            @endif
                                         </tr>
                                     </thead>
 
@@ -87,7 +91,8 @@
                                                 </td>
                                                 <td class="text-center" >{{$categoria->nombre}}</td>
                                                 <td class="text-center" >{{$categoria->descripcion}}</td>
-                                              
+                                                @if (Auth::user()->rol =='Supervisor')
+                                                
                                                 <td class="text-center">
                                                     <button data-target="#editCategoria{{$categoria->id}}" class="btn btn-success" data-toggle="modal">Editar</button>
                                                     <!-- Editar Categoria Modal HTML -->
@@ -136,6 +141,7 @@
                                                             <button type="submit" class="btn btn-danger"> Eliminar </button>
                                                     </form>                                                
                                                 </td>
+                                                @endif
                                                @empty
                                                     <tr>
                                                         <td style="color: red">Sin Categorias Que mostrat</td>

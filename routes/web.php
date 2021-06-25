@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\EncargadosController;
 use App\Http\Controllers\PreguntaController;
+use App\Http\Controllers\RespuestaController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\SupervisorController;
@@ -31,6 +32,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/',[PrimerController::class,'index'])->middleware('guest');
 Route::get('/inicia-sesion',[PrimerController::class,'sesion'])->name('login');
 Route::get('/registrar/usuario',[PrimerController::class,'registrar']);
+Route::post('/validarRegistro',[UsersController::class,'storeAjax']);
 
 Route::post('/usuario/nuevo', [UsersController::class,'store'])->name('nuevo');
 
@@ -50,10 +52,16 @@ Route::get('ver-productos/{id}',[ClientesController::class,'index']);
 Route::get('productos/{id}/{nombre}',[PrimerController::class,'veProductos']);
 Route::get('productos',[ProductosController::class,'indexC'])->middleware('auth')->name('productos');
 
-//como vendedor
+//--comprador
 
 Route::get('preguntas/{id}',[ClientesController::class,'preguntar'])->middleware('auth')->name('preguntar');
 Route::put('guardar/pregunta/{id}',[PreguntaController::class,'update']);
+Route::get('adquirir/este/producto/{id}',[ClientesController::class,'adquirir']);
+
+//--vendedor
+
+Route::get('revisar/producto/{id}',[ProductosController::class,'revisar'])->middleware('auth');
+Route::put('responder/pregunta/{id}',[RespuestaController::class,'store'])->middleware('auth');
 
 //********************************************* RUTAS SUPERVISOR********************************* */
 Route::get('usuarios',[SupervisorController::class,'index'])->middleware('auth')->name('users');
@@ -78,11 +86,9 @@ Route::put('editar/producto/{id}',[ProductosController::class,'update'])->middle
 
 Route::get('categorias/encargado',[EncargadosController::class,'index'])->middleware('auth')->name('categoria.encargado');
 Route::post('nueva/categoria/encargado',[CategoriaController::class,'storeE'])->middleware('auth')->name('nueva.categoria.E');
-Route::put('editar/categoria/encargado/{id}',[CategoriaController::class,'UpdateE']);
+//Route::put('editar/categoria/encargado/{id}',[CategoriaController::class,'UpdateE']);
 Route::delete('eliminar/categoria/encargado/{id}', [CategoriaController::class,'eliminarE']);
 
-Route::get('ver/producto/{id}',[ProductosController::class,'show']);
-Route::put('actualizar/prod/{id}',[ProductosController::class,'revisar']);
-Route::delete('eliminar/{id}',[ProductosController::class,'destroyE'])->middleware('auth');
+Route::put('actualizar/producto/{id}',[ProductosController::class,'updateEn'])->middleware('auth');
 
 Route::resource('categoria','App\Http\Controllers\CategoriaController');

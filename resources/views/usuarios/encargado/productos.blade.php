@@ -23,7 +23,7 @@
                         <div class="table-title">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <h2><b></b>Productos</h2>
+                                    <h2><b></b>Productos por revisar</h2>
                                     @if (Session::has('producto_revisado'))
                                         <p style="color: red">{{session('producto_revisado')}}</p>
                                     @endif
@@ -42,7 +42,7 @@
                                             <th scope="col"  class="text-center">Nombre</th>
                                              <th scope="col"  class="text-center">Descripción</th>
                                             <th scope="col"  class="text-center">Precio</th>
-                                        
+                                            <th scope="col"  class="text-center">Categoria</th>
                                             <th scope="col"  class="text-center">Acciones</th>
                                         </tr>
                                     </thead>
@@ -59,6 +59,7 @@
                                                 <td class="text-center" >{{$producto->nombre}}</td>
                                                 <td class="text-center" >{{$producto->descripcion}}</td>
                                                 <td class="text-center" >${{$producto->precio}} /MXN</td>
+                                                <td class="text-center" >{{$producto->id}}</td>
                                                 <td class="text-center">
                                                 
                                                    <button data-target="#revisarProd{{$producto->id}}" class="btn btn-warning" data-toggle="modal">Revisar</button>
@@ -66,9 +67,9 @@
                                                     <div id="revisarProd{{$producto->id}}" class="modal fade">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
-                                                                <form action="actualizar/prod/{{$producto->id}}" method="POST" enctype="multipart/form-data">
+                                                                <form action="/actualizar/producto/{{$producto->id}}" method="POST" enctype="multipart/form-data">
                                                                     {{ csrf_field() }}
-                                                                   @method('PUT')
+                                                                  @method('PUT')
                                                                     <div class="modal-header">						
                                                                         <h4 class="modal-title" style="color: rebeccapurple"><strong>Producto </strong></h4>
                                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -79,15 +80,19 @@
                                                                             <input name="nombre" type="text" class="form-control" value="{{$producto->nombre}}" required>
                                                                         </div>
                                                                         <div class="form-group">
+                                                                            <label for="precio" style="color: black"><strong>Precio del del Producto </strong></label>
+                                                                            <input name="precio" type="text" class="form-control" value="{{$producto->precio}}" required>
+                                                                        </div>
+                                                                        <div class="form-group">
                                                                             <label for="descripcion" style="color: black" ><strong> Descripcion </strong></label>
                                                                             <input name="descripcion" class="form-control" value="{{$producto->descripcion}}">
                                                                         </div>
                                                                         <div class="form-group">
-                                                                            <label for="consecionado" style="color: black" ><strong> Consecionar Producto </strong></label>
-                                                                            <select  name="consecionado" id="consecionado">
+                                                                            <label  style="color: black" ><strong> Aceptar/Rechazar Producto</strong></label>
+                                                                            <select  name="consecionado">
                                                                                 <option selected >--</option>
                                                                                 <option value="1">Aceptar Producto</option>
-                                                                                <option value="">Rechazar Producto</option>
+                                                                                <option value=" ">Rechazar Producto</option>
                                                                             </select>
                                                                         </div>
                                                                         <div class="form-group">
@@ -113,11 +118,7 @@
                                                     </div>
 
 
-                                                   <form style="margin-top: 10px; margin-left:16px" action="/eliminar/{{$producto->id}}" method="POST" onsubmit="return confirm('Desea eliminar este elemento?');">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger"> Eliminar </button>
-                                                    </form>                                                
+                                                                                                
                                                 </td>
                                                @empty
                                                     <tr>

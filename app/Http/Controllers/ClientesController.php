@@ -35,7 +35,7 @@ class ClientesController extends Controller
         switch (Auth::user()->rol) {
             case 'Cliente':
                 $cliente = Auth::user()->id;
-                $productos = Producto::activo()
+                $productos = Producto::ActivoDos()
 
                             ->where('user_id','!=',[[$cliente]]) 
                             ->where('categoria_id','=',[[$id]])->get(); 
@@ -51,19 +51,40 @@ class ClientesController extends Controller
         }
     }
 
-    public function preguntar($id){
+    public function preguntar( $id){
 
-        $producto = Producto::find($id);
+       //$this->authorize('question',$id);
+       $producto = Producto::find($id);
 
         $pregunta = DB::table('preguntas')
         ->join('users','preguntas.user_id','=','users.id')
-        ->select('users.name','preguntas.cuerpo','preguntas.id_pregunta')
+        ->join('respuestas','preguntas.id_pregunta','=','respuestas.pregunta_id')
+        ->select('users.name','preguntas.cuerpo','preguntas.id_pregunta','respuestas.pregunta_id','respuestas.respuesta')
         ->where('preguntas.producto_id','=',[[$id]])
         ->get();
 
-       
+
         return view('usuarios.client.preguntas',compact('producto','pregunta'));
     }
+
+    public function respuestas(Producto $id){
+
+        $producto = Producto::where($id);
+        //$this->authorize('product',$id);
+        $revisar = DB::table('preguntas')
+                    ->join('productos','productos.id','=','preguntas.producto_id')
+                     ->where('preguntas.producto_id','=',$id)
+                    
+                    ->get();
+        return view('usuarios.client.responder', compact('revisar'));
+    }
+
+    public function adquirir($id){
+
+        $producto = Producto::find($id);
+        return view('usuarios.client.adquirir_compra', compact('producto'));
+    }
+
 
     public function create()
     {

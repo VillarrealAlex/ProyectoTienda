@@ -9,6 +9,7 @@ use App\Models\Producto;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Pregunta;
 
 class ProductosController extends Controller
 {
@@ -37,21 +38,27 @@ class ProductosController extends Controller
         switch (Auth::user()->rol) {
             case 'Cliente':
                 $cliente = Auth::user()->id;
-                $productos = DB::table('productos')->where('user_id','=',[[$cliente]])->get();  
+                $productos = Producto::where('user_id','=',[[$cliente]])->get();  
 
                     return view("usuarios.client.productos",compact("productos"));
                 
                 break;
             case 'Encargado':
                 //$cliente = Auth::user()->id;
-                $productos = Producto::get();  
+                $productos = Producto::Activo()
+                        ->join('categoria','productos.categoria_id','=','categoria.id')
+                        ->select('productos.id','productos.nombre','productos.precio','productos.imagen','productos.descripcion','categoria.id')
+                        ->get(); 
 
                     return view("usuarios.encargado.productos",compact("productos"));
                 
                 break;
 
             default:
-            $productos = Producto::get();
+            $productos = DB::table('productos')
+                        ->join('categoria','productos.categoria_id','=','categoria.id')
+                        ->select('productos.id','productos.nombre','productos.precio','productos.imagen','productos.descripcion','categoria.id')
+                        ->get();
                  return view("usuarios.supervisor.agregaProductos",compact("productos"));
             
                 break;
@@ -86,12 +93,6 @@ class ProductosController extends Controller
             }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
@@ -106,9 +107,10 @@ class ProductosController extends Controller
                 break;
             case 'Encargado':
                 //$cliente = Auth::user()->id;
-                $revisar = Producto::find($id);
-                $productos = DB::table('productos')
+                //$revisar = Producto::find($id);
+                $productos = Producto::Activo()
                             ->where('id','=',[[$id]]) 
+                            //->where('consecionado','!=', 1)
                             ->get();
                     return view("usuarios.encargado.revisar",compact('productos','revisar'));
                 
@@ -145,36 +147,34 @@ class ProductosController extends Controller
         return redirect('/productos');
 
     }
-    public function UpdateE(Request $request, $id){
+
+    public function updateEn(Request $request, $id){
 
         $productos = request()->except(['_token','_method']);
-      // return response()->json($usuarios);
-        if ($request -> hasFile('imagen')) {
 
+        if($request->hasFile('imagen')){
             $prod = Producto::findOrFail($id);
             Storage::delete('public/'.$prod->imagen);
-            $categorias['imagen']=$request->file('imagen')->store('uploads','public');
+            $productos['imagen']=$request->file('imagen')->store('uploads','public');
         }
-        Producto::where('id','=',$id)->update($productos);
-        Session::flash('producto_editado','Producto Editado Correctamente');
+
+        Producto::where('id','=',[[$id]])->update($productos);
+        Session::flash('producto_revisado','El producto ha sido revisado');
         return redirect('/productos');
     }
 
-    public function revisar(Request $request, $id){
-        
-       // $this->authorize('product',$id);
+    
+    public function revisar( $id){
 
-        $productos = request()->except(['_token','_method']);
-        // return response()->json($usuarios);
-          if ($request -> hasFile('imagen')) {
-  
-              $prod = Producto::findOrFail($id);
-              Storage::delete('public/'.$prod->imagen);
-              $categorias['imagen']=$request->file('imagen')->store('uploads','public');
-          }
-          Producto::where('id','=',$id)->update($productos);
-          Session::flash('producto_revisado','Este Producto ha sido revisado');
-          return redirect('/productos');
+      //  $this->authorize('product',$id);
+        $producto = Producto::where($id);
+        
+        $pro = DB::table('productos')->where('id','=',$id)->get();
+        $revisar = DB::table('preguntas')
+                    ->join('productos','productos.id','=','preguntas.producto_id')
+                     ->where('preguntas.producto_id','=',$id)
+                    ->get();
+        return view('usuarios.client.responder', compact('revisar','producto','pro'));
     }
    
     public function destroy($id)
@@ -192,4 +192,5 @@ class ProductosController extends Controller
         Session::flash('producto_eliminado','Producto eliminado Con Éxito');
         return redirect('/productos');
     }
+    
 }

@@ -27,7 +27,9 @@
                                 </div>
                                 
                                 <div class="col-sm-6">
+                                    @if (Auth::user()->rol != 'Encargado') 
                                     <a href="{{route('nuevoUsuario')}}" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Agregar Nuevo Usuario</span></a>					
+                                    @endif
                                     @if (Session::has('message'))
                                         <div class="text-danger">
                                         <h6>{{Session::get('message')}}</h6>
@@ -70,13 +72,17 @@
                                                 <td class="text-center" >{{$item->rol}}</td>
                                                 <td class="text-center">
                                                     <a href="editar/usuario/{{$item->id}}"><button  class="btn btn-success">Editar</button></a>
+                                                    @if (Auth::user()->rol == 'Supervisor')
                                                     <a href="detalles/usuario/{{$item->id}}"><button  class="btn btn-warning"> Mostrar</button></a>
-                                                <form style="margin-top: 10px; margin-left:16px" action="eliminar/usuario/{{$item->id}}" method="POST" onsubmit="return confirm('Desea eliminar este elemento?');">
+                                                    <form style="margin-top: 10px; margin-left:16px" action="eliminar/usuario/{{$item->id}}" method="POST" onsubmit="return confirm('Desea eliminar este elemento?');">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger"> Eliminar </button>
                                                     
-                                                </form>
+                                                    </form>
+                                                    @endif
+                                                    
+                                                
                                                 </td>
                                                 @empty 
                                                     <tr>

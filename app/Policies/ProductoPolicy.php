@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Pregunta;
 use App\Models\Producto;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -21,11 +22,18 @@ class ProductoPolicy
 
     public function product(User $user, Producto $id){
 
-        if ($id == 1) {
+        if($user->id == $id->user_id){
             return true;
-        }else if($id == "") {
+        }else {
             return false;
+        }
+    }
 
+    public function question(User $user, Pregunta $id){
+        if($user->id == $id->user_id){
+            return true;
+        }else{
+            return false;
         }
     }
 }

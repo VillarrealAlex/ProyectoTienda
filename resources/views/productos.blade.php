@@ -47,11 +47,11 @@
                 <div class="mb-1 text-muted">${{$producto->precio}}/MXN</div>
                 <p class="card-text mb-auto">{{$producto->descripcion}}</p>
                
-                    <a href="#" style="float: left"><button style="float: left" type="submit" class="btn btn-success">Comprar</button></a>
-                    <a href="#" style="float: left; margin-top:5pt"><button style="float: left" type="submit" class="btn btn-warning">Otra accion</button></a>
+                    <a href="/registrar/usuario" style="float: left"><button style="float: left" type="submit" class="btn btn-success">Comprar</button></a>
+                    <a href="/registrar/usuario" style="float: left; margin-top:5pt"><button style="float: left" type="submit" class="btn btn-warning">Agregar al Carrito</button></a>
             </div>
             <div class="col-auto d-none d-lg-block">
-                <img src="{{asset('images/fundas.png')}}" alt="Imagen Prod">
+                <img src="{{asset('storage'.'/'.$producto->imagen)}}" alt="Imagen Prod">
             </div>
         </div>
         @empty

@@ -43,7 +43,7 @@
             @method('PUT')
             <div class="form-group mx-sm-3 md-2">
                 <label  for="cuerpo" style="color: blue"><strong> Haz una pregunta... </strong></label>
-                <input type="text" class="form-control " id="pregunta" 
+                <input style="width: 260pt" type="text" class="form-control " id="pregunta" 
                        placeholder="Escribe tu pregunta..." name="cuerpo" required>
             </div>
            <div class="form-group mx-sm-3 mb-2">
@@ -61,12 +61,16 @@
             <div class="d-flex text-muted pt-3">
               <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                 <div class="d-flex justify-content-between">
-                  <strong class="text-gray-dark">{{$item->name}}</strong>
+                  <strong class="text-gray-dark">Pregunta Hecha Por:  {{ $item->name }}</strong>
                 </div>
                 <span class="d-block">{{$item->cuerpo}}</span>
+                <span >Respuestas: {{$item->respuesta}}</span>
               </div>
+             
             </div>
             
             @endforeach
+            
+
           </div>
 @endsection

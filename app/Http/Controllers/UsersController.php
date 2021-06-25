@@ -48,6 +48,25 @@ class UsersController extends Controller
        
     }
 
+    public function storeAjax(Request $request)
+    {
+        if($request->get('email'))
+        {
+          $email = $request->get('email');
+          $data = User::where('email','LIKE', "%$email%")
+           ->count();
+          if($data > 0)
+          {
+           echo 'ya exite';
+            }
+            else
+          {
+           echo 'disponible';
+          }
+        }
+    }
+
+
     /**
      * Display the specified resource.
      *

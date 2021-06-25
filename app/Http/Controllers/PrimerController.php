@@ -41,7 +41,7 @@ class PrimerController extends Controller
         $Bprod = $request->get('Bprod');
 
         if ($id != null) {
-            $productos = Producto::activo()->where('categoria_id',$id)
+            $productos = Producto::activodos()->where('categoria_id',$id)
                         //->where('consecionado','=',1)
                         ->where('nombre','LIKE','%'.$Bprod.'%')
                         ->get();

@@ -50,6 +50,8 @@
                     @yield('clientes')
                     @yield('productos')
                     @yield('preguntas')
+                    @yield('responder')
+                    @yield('adquirir_compra')
                     <!-- Administrador-->
                     @yield('admin')
                 
@@ -62,6 +64,7 @@
 
                     <!-- Encargador-->
                     @yield('encargado')
+                    @yield('revisar')
 
 
      

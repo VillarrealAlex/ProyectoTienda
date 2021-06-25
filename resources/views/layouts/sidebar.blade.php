@@ -156,12 +156,17 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-file"></i>
-                    <span>Categoria</span></a>
+                    <span>Validar Pagos</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-box"></i>
-                    <span>Producto</span></a>
+                    <i class="fas fa-fw fa-list"></i>
+                    <span>Lista de Pagos</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-credit-card"></i>
+                    <span>Nuevo Pago</span></a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

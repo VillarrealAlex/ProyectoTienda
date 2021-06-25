@@ -46,7 +46,8 @@ class EncargadosController extends Controller
     
     public function show($id)
     {
-        //
+      
+
     }
 
    
@@ -58,7 +59,7 @@ class EncargadosController extends Controller
    
     public function update(Request $request, $id)
     {
-
+        
     
     }
 

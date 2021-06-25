@@ -46,6 +46,8 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <h3>Administrar <b> Productos  </b><b style="color:red"></b></h3>
+                                    <p style="color:rgb(36, 219, 36)">Los Productos aceptados se marcan con "1"</p>
+                                   
                                 </div>
                                 @if (Session::has('producto_agregado'))
                                     <p style="color: red">{{session('producto_agregado')}}</p>
@@ -70,7 +72,8 @@
                                             <th scope="col"  class="text-center">Nombre de Producto</th>
                                             <th scope="col"  class="text-center">Descripción</th>
                                             <th scope="col"  class="text-center">Precio</th>
-                                        
+                                            <th scope="col"  class="text-center">Motivo por el cual se rechazó el producto</th>
+                                            <th scope="col"  class="text-center">Producto Aceptado?</th>
                                             <th scope="col"  class="text-center">Acciones</th>
                                         </tr>
                                     </thead>
@@ -87,7 +90,8 @@
                                                 <td class="text-center" >{{$producto->nombre}}</td>
                                                 <td class="text-center" >{{$producto->descripcion}}</td>
                                                 <td class="text-center" >${{$producto->precio}}/MXN</td>
-                                              
+                                                <td class="text-center" >{{$producto->motivo}}</td>
+                                                <td class="text-center" >{{$producto->consecionado}}</td>
                                                 <td class="text-center">
                                                     <button data-target="#editProducto{{$producto->id}}" class="btn btn-success" data-toggle="modal">Editar</button>
                                                     <!-- Editar Categoria Modal HTML -->
@@ -110,10 +114,12 @@
                                                                                 <label for="descripcion" style="color: black" ><strong> Descripcion </strong></label>
                                                                                 <input name="descripcion" class="form-control" value="{{$producto->descripcion}}">
                                                                             </div>
+                                                                            @if (Auth::user()->rol != 'Cliente')
                                                                             <div class="form-group">
                                                                                 <label for="motivo" style="color: black" ><strong> Motivo </strong></label>
                                                                                 <input name="motivo" class="form-control" value="{{$producto->motivo}}">
                                                                             </div>
+                                                                            @endif
                                                                             <div class="form-group">
                                                                                 <label for="precio" style="color: black" ><strong> Precio </strong></label>
                                                                                 <input name="precio" class="form-control" value="{{$producto->precio}}">
@@ -135,7 +141,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    <a href="#"><button  class="btn btn-warning"> Revisar</button></a>
+                                                    <a href="/revisar/producto/{{$producto->id}}"><button  class="btn btn-warning"> Revisar</button></a>
                                                     <!--a href="#"><button  class="btn btn-primary"> Agregar Productos</button></a-->
                                                     
                                                     <form style="margin-top: 10px; margin-left:16px" action="/eliminar/producto/{{$producto->id}}" method="POST" onsubmit="return confirm('Desea eliminar este elemento?');">
@@ -201,10 +207,10 @@ aria-hidden="true">
 						<label for="precio">Precio</label>
 						<input type="text" name="precio" class="form-control" required>
 					</div>
-                    <!--div class="form-group">
-						<label for="motivo">Motivo</label>
-						<input type="text" name="motivo" class="form-control" required>
-					</div-->
+                    <div class="form-group">
+						<label for="stock">Cantidad de productos</label>
+						<input type="text" name="stock" class="form-control" required>
+					</div>
                     <div class="form-group">
 						<label for="categoria_id">ID de Categoria</label>
 						<input type="text" name="categoria_id" class="form-control" required>
