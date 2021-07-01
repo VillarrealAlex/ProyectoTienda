@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PrimerController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\ContadorController;
 use App\Http\Controllers\EncargadosController;
 use App\Http\Controllers\PreguntaController;
 use App\Http\Controllers\RespuestaController;
@@ -90,5 +91,10 @@ Route::post('nueva/categoria/encargado',[CategoriaController::class,'storeE'])->
 Route::delete('eliminar/categoria/encargado/{id}', [CategoriaController::class,'eliminarE']);
 
 Route::put('actualizar/producto/{id}',[ProductosController::class,'updateEn'])->middleware('auth');
+
+//******************************************************RUTAS CONTADOR****************+**** */
+Route::get('validar/pago', [ContadorController::class,'index2'])->name('validar');
+Route::get('listar/pagos', [ContadorController::class,'index2'])->name('listar');
+Route::get('generar/nuevo/pago', [ContadorController::class,'index2'])->name('generar');
 
 Route::resource('categoria','App\Http\Controllers\CategoriaController');

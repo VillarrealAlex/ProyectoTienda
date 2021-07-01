@@ -19,7 +19,10 @@ class ContadorController extends Controller
 
     }
 
-  
+    public function index2(){
+
+        return view('usuarios.contador.validar');
+    }
 
     public function create()
     {
